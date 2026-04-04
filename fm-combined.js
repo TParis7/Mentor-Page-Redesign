@@ -1,7 +1,7 @@
 /**
  * fm-combined.js — For Mentors page builder
  * Pulse of Perseverance Project (P3)
- * v1.2.0 — 2026-04-04
+ * v1.3.0 — 2026-04-04
  *
  * Pattern: same as pp-combined.js (partner page).
  * Loaded via fmmentorloader inline script on the Webflow /for-mentors page.
@@ -51,11 +51,11 @@
     ".fm-nav-logo { width: auto; height: 36px; display: block; position: relative; z-index: 1001; }",
     ".fm-nav-logo img { max-height: 36px; width: auto; height: auto; object-fit: contain; max-width: 100%; }",
     ".fm-nav-links { display: flex; align-items: center; column-gap: 32px; margin-left: auto; }",
-    ".fm-navbar .fm-nav-links a { font-family: Inter, sans-serif; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.85); text-decoration: none; transition: color 0.2s; }",
+    ".fm-navbar .fm-nav-links a { font-family: Inter, sans-serif; font-size: 14px; font-weight: 500; line-height: normal; color: rgba(255,255,255,0.85); text-decoration: none; transition: color 0.2s; }",
     ".fm-navbar .fm-nav-links a:hover { color: #fff; }",
     ".fm-navbar .fm-nav-links a.active { color: #D93A3A; font-weight: 600; }",
     ".fm-nav-links .fm-home-link { display: none; }",
-    ".fm-nav-cta { background: #D93A3A; color: #fff !important; border-radius: 50px; align-items: center; padding: 10px 24px; font-family: Inter, sans-serif; font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s; display: inline-flex; }",
+    ".fm-nav-cta { background: #D93A3A; color: #fff !important; border-radius: 50px; align-items: center; padding: 10px 24px; font-family: Inter, sans-serif; font-size: 14px; font-weight: 600; line-height: normal; text-decoration: none; transition: all 0.2s; display: inline-flex; }",
     ".fm-nav-cta:hover { background: #b82e2e !important; opacity: 0.9; }",
     ".fm-mobile-toggle { display: none; cursor: pointer; background: none; border: none; padding: 8px; margin-left: auto; }",
     ".fm-mobile-toggle span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s ease; }",
