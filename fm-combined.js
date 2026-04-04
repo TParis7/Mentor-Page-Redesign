@@ -1,7 +1,7 @@
 /**
  * fm-combined.js — For Mentors page builder
  * Pulse of Perseverance Project (P3)
- * v2.1.0 — 2026-04-04
+ * v2.2.0 — 2026-04-04
  *
  * Pattern: Webflow-native nav/footer + JS content injection.
  * The /for-mentors page uses P3 Nav, P3 Mobile Overlay, and P3 Footer
@@ -60,7 +60,8 @@
     ".fm-hero-stat-label { font-size: 0.72rem; color: rgba(255,255,255,0.5); margin-top: 2px; }",
 
     /* ═══ LOGO BAR ═══ */
-    ".fm-logo-bar { background: #f5f5f5; padding: 24px 0; border-bottom: 1px solid #eee; overflow: hidden; }",
+    ".fm-logo-bar { background: #fff; padding: 28px 0; border-bottom: 1px solid #eee; overflow: hidden; }",
+    ".fm-logo-label { font-size: 0.7rem; font-weight: 600; color: #999; letter-spacing: 1.12px; text-transform: uppercase; text-align: center; margin-bottom: 18px; }",
     ".fm-logo-track { display: flex; gap: 48px; animation: fmScrollLogos 30s linear infinite; width: max-content; align-items: center; }",
     ".fm-logo-track img { height: 36px; opacity: 0.7; filter: grayscale(100%); transition: all 0.3s; }",
     ".fm-logo-track img:hover { opacity: 1; filter: grayscale(0%); }",
@@ -225,6 +226,8 @@
     "@media (max-width: 991px) {",
     "  .pp-mob-menu { display: flex; }",
     "  .p3-nav-links, .p3-nav-cta { display: none !important; }",
+    "  .p3-nav { padding: 16px !important; height: 64px !important; }",
+    "  .p3-nav .p3-nav-logo img { max-height: 36px !important; height: 36px !important; }",
     "}",
     "@media (max-width: 1024px) {",
     "  .fm-hero h1 { font-size: 2.4rem; }",
@@ -240,11 +243,11 @@
     "  .fm-hero { padding: 120px 0 48px; min-height: auto; }",
     "  .fm-hero .fm-container { padding: 0 28px; }",
     "  .fm-hero-content { max-width: 100%; text-align: center; }",
-    "  .fm-hero h1 { font-size: 2rem; }",
+    "  .fm-hero h1 { font-size: 1.75rem; }",
     "  .fm-hero p { font-size: 1rem; margin-bottom: 28px; max-width: 100%; }",
     "  .fm-hero-watermark { display: none; }",
     "  .fm-hero-buttons { flex-direction: column; gap: 12px; }",
-    "  .fm-hero-buttons .fm-btn { width: 100%; justify-content: center; padding: 16px 32px; font-size: 1rem; }",
+    "  .fm-hero-buttons .fm-btn { width: 100%; justify-content: center; padding: 20px 32px; font-size: 14px; }",
     "  .fm-hero-stats { gap: 20px; flex-wrap: wrap; margin-top: 28px; padding-top: 24px; justify-content: center; }",
     "  .fm-hero-stat-num { font-size: 1.6rem; }",
     "  .fm-section-heading { font-size: 1.6rem; }",
@@ -270,10 +273,7 @@
     "  .fm-community-gallery .fm-container { margin-bottom: 24px; }",
     "  .fm-cta-section h2 { font-size: 1.6rem; }",
     "  .fm-cta-section p { font-size: 0.92rem; }",
-    "  .fm-portal-text { text-align: center; }",
-    "  .fm-portal-text .fm-section-label { text-align: center; }",
-    "  .fm-portal-text .fm-btn { display: inline-flex; }",
-    "  .fm-portal-features { align-items: center; }",
+    "  .fm-portal-text .fm-btn { display: block; margin: 0 auto; width: fit-content; }",
     "}",
     "@media (max-width: 480px) {",
     "  .fm-hero h1 { font-size: 1.75rem; }",
@@ -388,6 +388,7 @@
 
     /* ── LOGO BAR ── */
     '<div class="fm-logo-bar">',
+    '  <div class="fm-logo-label">Trusted by leading institutions</div>',
     '  <div class="fm-logo-track">' + logoHtml + logoHtml + '</div>',
     '</div>',
 
@@ -403,7 +404,7 @@
 
     '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.hospital + '" alt="Fits Your Schedule"><div class="fm-why-card-overlay"><h3>Fits Your Schedule</h3></div></div><div class="fm-why-card-body"><div class="fm-why-card-role">Asynchronous Mentorship</div><p>Mentees send text-based questions, and you respond with short videos when it works for you. No calendar conflicts \u2014 just genuine guidance.</p></div></div>',
 
-    '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.starterPack + '" alt="Guided Support" class="top-align"><div class="fm-why-card-overlay"><h3>Guided Support</h3></div></div><div class="fm-why-card-body"><div class="fm-why-card-role">Supported from Day One</div><p>Every mentor receives a Mentorship Guide \u2014 peer reviewed by 20+ industry experts from UT Austin, LSU, Michigan, and Google.</p></div></div>',
+    '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.starterPack + '" alt="Guided Support"><div class="fm-why-card-overlay"><h3>Guided Support</h3></div></div><div class="fm-why-card-body"><div class="fm-why-card-role">Supported from Day One</div><p>Every mentor receives a Mentorship Guide \u2014 peer reviewed by 20+ industry experts from UT Austin, LSU, Michigan, and Google.</p></div></div>',
 
     '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.groupPhoto + '" alt="National Visibility" class="top-align"><div class="fm-why-card-overlay"><h3>National Visibility</h3></div></div><div class="fm-why-card-body"><div class="fm-why-card-role">Mentor Portal</div><p>Once approved, your profile is featured on our National Mentor Portal \u2014 a public directory where students nationwide can discover you.</p></div></div>',
 
