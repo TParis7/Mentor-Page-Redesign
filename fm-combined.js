@@ -1,7 +1,7 @@
 /**
  * fm-combined.js — For Mentors page builder
  * Pulse of Perseverance Project (P3)
- * v1.0.0 — 2026-04-04
+ * v1.1.0 — 2026-04-04
  *
  * Pattern: same as pp-combined.js (partner page).
  * Loaded via fmmentorloader inline script on the Webflow /for-mentors page.
@@ -50,9 +50,9 @@
     ".fm-navbar.scrolled { background: rgba(26,10,10,0.95); backdrop-filter: blur(12px); box-shadow: 0 2px 20px rgba(0,0,0,0.2); }",
     ".fm-nav-logo img { height: 36px; }",
     ".fm-nav-links { display: flex; align-items: center; gap: 32px; }",
-    ".fm-nav-links a { font-size: 0.875rem; font-weight: 500; color: rgba(255,255,255,0.85); transition: color 0.2s; }",
-    ".fm-nav-links a:hover { color: #fff; }",
-    ".fm-nav-links a.active { color: #D93A3A; font-weight: 600; }",
+    ".fm-navbar .fm-nav-links a { font-size: 0.875rem; font-weight: 500; color: rgba(255,255,255,0.85); transition: color 0.2s; }",
+    ".fm-navbar .fm-nav-links a:hover { color: #fff; }",
+    ".fm-navbar .fm-nav-links a.active { color: #D93A3A; font-weight: 600; }",
     ".fm-nav-cta { background: #D93A3A; color: #fff !important; padding: 10px 24px; border-radius: 50px; font-weight: 600; }",
     ".fm-nav-cta:hover { background: #b82e2e !important; }",
     ".fm-mobile-toggle { display: none; cursor: pointer; background: none; border: none; padding: 8px; }",
@@ -61,9 +61,9 @@
     /* ── Mobile overlay ── */
     ".fm-mobile-overlay { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(26,10,10,0.97); flex-direction: column; align-items: center; justify-content: center; gap: 24px; }",
     ".fm-mobile-overlay.open { display: flex; }",
-    ".fm-mobile-overlay a { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 600; color: rgba(255,255,255,0.85); transition: color 0.2s; }",
-    ".fm-mobile-overlay a:hover { color: #fff; }",
-    ".fm-mobile-overlay a.active { color: #D93A3A; }",
+    "body.fm-active .fm-mobile-overlay a { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 600; color: rgba(255,255,255,0.85); transition: color 0.2s; }",
+    "body.fm-active .fm-mobile-overlay a:hover { color: #fff; }",
+    "body.fm-active .fm-mobile-overlay a.active { color: #D93A3A; }",
     ".fm-mobile-overlay .fm-nav-cta { font-size: 1rem; padding: 14px 36px; margin-top: 12px; display: inline-block; border-radius: 50px; }",
     ".fm-mobile-close { position: absolute; top: 20px; right: 24px; background: none; border: none; cursor: pointer; }",
     ".fm-mobile-close svg { width: 28px; height: 28px; stroke: #fff; }",
@@ -240,11 +240,11 @@
     ".fm-footer-brand p { font-size: 13px; line-height: 1.6; max-width: 320px; color: rgba(255,255,255,0.5); }",
     ".fm-footer-brand .fm-footer-location { margin-top: 8px; font-size: 12px; color: rgba(255,255,255,0.4); }",
     ".fm-footer-col h4 { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px; }",
-    ".fm-footer-col a { display: block; font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.6); margin-bottom: 10px; transition: color 0.2s; }",
-    ".fm-footer-col a:hover { color: #fff; }",
+    "body.fm-active .fm-footer-col a { display: block; font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.6); margin-bottom: 10px; transition: color 0.2s; }",
+    "body.fm-active .fm-footer-col a:hover { color: #fff; }",
     ".fm-footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; justify-content: center; align-items: center; gap: 4px; font-size: 12px; color: rgba(255,255,255,0.4); }",
-    ".fm-footer-bottom a { font-size: 12px; color: rgba(255,255,255,0.4); transition: color 0.2s; }",
-    ".fm-footer-bottom a:hover { color: #fff; }",
+    "body.fm-active .fm-footer-bottom a { font-size: 12px; color: rgba(255,255,255,0.4); transition: color 0.2s; }",
+    "body.fm-active .fm-footer-bottom a:hover { color: #fff; }",
 
     /* ═══ RESPONSIVE ═══ */
     "@media (max-width: 1024px) {",
@@ -424,8 +424,8 @@
     '      <h1>Your experience is someone\'s <em>roadmap to success</em></h1>',
     '      <p>Join a community of industry professionals guiding ambitious students from underserved communities. Mentorship that fits your schedule \u2014 powered by AI smart matching, delivered through short videos.</p>',
     '      <div class="fm-hero-buttons">',
-    '        <a href="/download" class="fm-btn fm-btn-white">Register Now</a>',
-    '        <a href="#fm-get-started" class="fm-btn fm-btn-white-outline">See How It Works</a>',
+    '        <a href="/download" class="fm-btn fm-btn-white">Become a Mentor</a>',
+    '        <a href="#fm-get-started" class="fm-btn fm-btn-white-outline">How It Works</a>',
     '      </div>',
     '      <div class="fm-hero-stats">',
     '        <div><div class="fm-hero-stat-num">900+</div><div class="fm-hero-stat-label">Registered Users</div></div>',
@@ -587,7 +587,7 @@
     '    <h2>Ready to open doors for the <em style="font-style:normal;background:linear-gradient(90deg,#ff6b6b,#ffa07a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">next generation?</em></h2>',
     '    <p>Apply today to join our community of mentors. Through the P3 app, you\'ll connect directly with ambitious students who need your experience, guidance, and support.</p>',
     '    <div class="fm-cta-buttons">',
-    '      <a href="/download" class="fm-btn fm-btn-white">Register Now</a>',
+    '      <a href="/download" class="fm-btn fm-btn-white">Become a Mentor</a>',
     '      <a href="mailto:mentors@pulseofp3.org" class="fm-btn fm-btn-white-outline">Contact Us</a>',
     '    </div>',
     '  </div>',
@@ -621,6 +621,14 @@
     link2.rel = 'stylesheet';
     link2.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap';
     document.head.appendChild(link2);
+
+    /* ── Fix OG image to match homepage ── */
+    var oldOg = document.querySelector('meta[property="og:image"]');
+    if (oldOg) oldOg.remove();
+    var ogImg = document.createElement('meta');
+    ogImg.setAttribute('property', 'og:image');
+    ogImg.setAttribute('content', 'https://cdn.prod.website-files.com/69b02f65f0068e9fb16f09f7/69b176b499f6fec2ebce26b7_1.png');
+    document.head.appendChild(ogImg);
 
     /* ── Inject CSS ── */
     var style = document.createElement('style');
