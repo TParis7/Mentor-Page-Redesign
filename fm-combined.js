@@ -674,6 +674,32 @@
           }
         }
       });
+
+      /* Fix footer bottom bar — centered copyright + Terms & Conditions (match HP/PP) */
+      var bottom = footer.querySelector('.p3-footer-bottom');
+      if (bottom && bottom.textContent.indexOf('All rights') === -1) {
+        bottom.innerHTML = '';
+        bottom.style.cssText = 'display:flex;justify-content:center;align-items:center;gap:4px;padding-top:24px;flex-wrap:wrap;';
+        var cp = document.createElement('p');
+        cp.textContent = '\u00a9 2026 Pulse of Perseverance Project. All rights reserved.';
+        cp.style.cssText = 'margin:0;color:rgba(255,255,255,0.4);font-size:12px;';
+        bottom.appendChild(cp);
+        var tc = document.createElement('a');
+        tc.href = '/terms-conditions';
+        tc.textContent = 'Terms & Conditions';
+        tc.className = 'p3-footer-link';
+        tc.style.cssText = 'font-size:12px;text-decoration:underline;color:rgba(255,255,255,0.4);';
+        bottom.appendChild(tc);
+      }
+
+      /* Inject mobile footer compact layout CSS */
+      var fmFtCss = document.createElement('style');
+      fmFtCss.textContent = '@media(max-width:768px){' +
+        '.p3-footer-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:24px 16px!important;}' +
+        '.p3-footer-brand{grid-column:1/-1;}' +
+        '.p3-footer-bottom{flex-wrap:wrap;justify-content:center;text-align:center;}' +
+        '}';
+      document.head.appendChild(fmFtCss);
     })();
   }
 
