@@ -36,7 +36,7 @@
     ".fm-section-heading em { font-style: normal; color: #D93A3A; }",
     ".fm-section-sub { font-size: 1.05rem; color: #555; max-width: 640px; line-height: 1.7; }",
     ".fm-container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }",
-    ".fm-section { padding: 56px 0; }",
+    ".fm-section { padding: 48px 0; }",
     ".fm-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 100px; font-weight: 600; font-size: 0.9rem; transition: all 0.25s ease; cursor: pointer; border: 2px solid transparent; font-family: 'Inter', sans-serif; }",
     ".fm-btn-primary { background: #D93A3A; color: #fff; border-color: #D93A3A; }",
     ".fm-btn-primary:hover { background: #b82e2e; border-color: #b82e2e; transform: translateY(-1px); }",
@@ -86,7 +86,7 @@
     ".fm-why-card-body p { font-size: 0.88rem; color: #555; line-height: 1.6; margin-bottom: 12px; }",
 
     /* ═══ GET STARTED ═══ */
-    ".fm-get-started { background: #f8f6f3; position: relative; overflow: hidden; padding: 56px 0; }",
+    ".fm-get-started { background: #f8f6f3; position: relative; overflow: hidden; padding: 48px 0; }",
     ".fm-get-started .fm-container { position: relative; z-index: 2; }",
     ".fm-gs-header { text-align: center; margin-bottom: 32px; }",
     ".fm-gs-header h2 { font-size: 2.6rem; font-weight: 700; color: #1a1a1a; margin-bottom: 12px; }",
@@ -123,7 +123,7 @@
     ".fm-gs-step-body p { font-size: 0.85rem; color: #666; line-height: 1.55; }",
 
     /* ═══ FEATURES ═══ */
-    ".fm-features { background: #fff; padding: 56px 0; }",
+    ".fm-features { background: #fff; padding: 48px 0; }",
     ".fm-feature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-bottom: 40px; }",
     ".fm-feature-row:last-child { margin-bottom: 0; }",
     ".fm-feature-row.reverse { direction: rtl; }",
@@ -138,7 +138,7 @@
     ".fm-feature-list li::before { content: '\\2713'; color: #D93A3A; font-weight: 700; flex-shrink: 0; margin-top: 1px; }",
 
     /* ═══ MILESTONES ═══ */
-    ".fm-milestones { background: linear-gradient(135deg, #3a0c18 0%, #4a1020 40%, #2a0e16 100%); color: #fff; padding: 56px 0; }",
+    ".fm-milestones { background: linear-gradient(135deg, #3a0c18 0%, #4a1020 40%, #2a0e16 100%); color: #fff; padding: 48px 0; }",
     ".fm-milestones .fm-section-label { color: #ff8a8a; }",
     ".fm-milestones .fm-section-heading { color: #fff; }",
     ".fm-milestones .fm-section-sub { color: rgba(255,255,255,0.7); }",
@@ -172,7 +172,7 @@
     ".fm-ms-detail-text p { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.55; }",
 
     /* ═══ PORTAL ═══ */
-    ".fm-portal { background: #fff; padding: 56px 0; }",
+    ".fm-portal { background: #fff; padding: 48px 0; }",
     ".fm-portal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; }",
     ".fm-portal-preview { background: linear-gradient(135deg, #f0f0f0, #e8e4e0); border-radius: 16px; overflow: hidden; }",
     ".fm-portal-browser-bar { background: #e0e0e0; padding: 12px 16px; display: flex; align-items: center; gap: 8px; }",
@@ -199,14 +199,14 @@
     ".fm-pf-text p { font-size: 0.8rem; color: #777; margin-bottom: 0; }",
 
     /* ═══ COMMUNITY GALLERY ═══ */
-    ".fm-community-gallery { padding: 56px 0; background: #fff; overflow: hidden; }",
+    ".fm-community-gallery { padding: 48px 0; background: #fff; overflow: hidden; }",
     ".fm-community-gallery .fm-container { text-align: center; margin-bottom: 28px; }",
     ".fm-gallery-track { display: flex; gap: 12px; animation: fmScrollGallery 40s linear infinite; width: max-content; }",
     ".fm-gallery-track img { width: 240px; height: 180px; object-fit: cover; border-radius: 12px; }",
     "@keyframes fmScrollGallery { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }",
 
     /* ═══ CTA ═══ */
-    ".fm-cta-section { background: linear-gradient(135deg, #3a0c18 0%, #4a1020 40%, #2a0e16 100%); color: #fff; text-align: center; padding: 56px 0; }",
+    ".fm-cta-section { background: linear-gradient(135deg, #3a0c18 0%, #4a1020 40%, #2a0e16 100%); color: #fff; text-align: center; padding: 48px 0; }",
     ".fm-cta-section h2 { font-size: 2.4rem; font-weight: 700; margin-bottom: 16px; }",
     ".fm-cta-section p { font-size: 1.05rem; color: rgba(255,255,255,0.7); max-width: 560px; margin: 0 auto 32px; line-height: 1.7; }",
     ".fm-cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }",
@@ -247,7 +247,7 @@
     "  .fm-hero p { font-size: 1rem; margin-bottom: 28px; max-width: 100%; }",
     "  .fm-hero-watermark { display: none; }",
     "  .fm-hero-buttons { flex-direction: column; gap: 12px; }",
-    "  .fm-hero-buttons .fm-btn { width: 100%; justify-content: center; padding: 20px 32px; font-size: 14px; }",
+    "  .fm-hero-buttons .fm-btn { width: 100%; justify-content: center; padding: 14px 32px; font-size: 14px; }",
     "  .fm-hero-stats { gap: 20px; flex-wrap: wrap; margin-top: 28px; padding-top: 24px; justify-content: center; }",
     "  .fm-hero-stat-num { font-size: 1.6rem; }",
     "  .fm-section-heading { font-size: 1.6rem; }",
@@ -462,7 +462,7 @@
     /* ── MILESTONES ── */
     '<section class="fm-milestones" id="fm-milestones">',
     '  <div class="fm-container">',
-    '    <div class="fm-section-label">New Feature</div>',
+    '    <div class="fm-section-label">New Feature - Coming April 2026</div>',
     '    <h2 class="fm-section-heading">Pathway Milestones</h2>',
     '    <p class="fm-section-sub">A new way to see your mentee\'s progress. Students check off real-life milestones over time, so your guidance can be tailored to exactly where they are.</p>',
     '    <div class="fm-milestone-content">',
