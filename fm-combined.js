@@ -42,8 +42,9 @@
     ".fm-btn-primary:hover { background: #b82e2e; border-color: #b82e2e; transform: translateY(-1px); }",
     ".fm-btn-white { background: #D93A3A; color: #fff; border-color: #D93A3A; }",
     ".fm-btn-white:hover { background: #b82e2e; border-color: #b82e2e; transform: translateY(-1px); }",
-    /* Arrow modifier — matches partner page .ba pattern */
-    ".fm-btn-arrow::after { content: '\\2192'; margin-left: 6px; display: inline-block; transition: transform .25s cubic-bezier(.25,.46,.45,.94); }",
+    /* Arrow modifier — matches partner page .ba pattern exactly (gap 6, ml 3) */
+    ".fm-btn-arrow { gap: 6px !important; }",
+    ".fm-btn-arrow::after { content: '\\2192'; margin-left: 3px; transition: transform .25s cubic-bezier(.25,.46,.45,.94); }",
     ".fm-btn-arrow:hover::after { transform: translateX(3px); }",
     ".fm-btn-white-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.3); }",
     ".fm-btn-white-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); }",
@@ -164,7 +165,7 @@
     ".fm-ms-item-text { font-size: 0.88rem; color: rgba(255,255,255,0.85); }",
     ".fm-ms-item.active .fm-ms-item-text { color: #fff; font-weight: 500; }",
     ".fm-milestone-details { display: flex; flex-direction: column; gap: 20px; }",
-    ".fm-ms-detail-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 22px; display: flex; gap: 16px; align-items: flex-start; }",
+    ".fm-ms-detail-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 18px 22px 12px; display: flex; gap: 16px; align-items: flex-start; }",
     ".fm-ms-detail-icon { width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }",
     ".fm-ms-detail-icon.red { background: rgba(217,58,58,0.2); }",
     ".fm-ms-detail-icon.blue { background: rgba(59,130,246,0.2); }",
@@ -284,10 +285,13 @@
     "  .fm-milestones .fm-container > .fm-section-label { display: inline-block; margin-left: 50%; transform: translateX(-50%); }",
     /* Center Portal text block (Get discovered + National Mentor Portal) on mobile */
     "  .fm-portal-text { text-align: center !important; }",
-    "  .fm-portal-text .fm-section-label { display: inline-block; margin-left: 50%; transform: translateX(-50%); }",
-    "  .fm-portal-text h3 { text-align: center !important; }",
-    "  .fm-portal-text p { text-align: center !important; }",
-    "  .fm-portal-features { text-align: left; }",
+    "  .fm-portal-text > .fm-section-label { display: inline-block; white-space: nowrap; }",
+    "  .fm-portal-text > h3 { text-align: center !important; }",
+    "  .fm-portal-text > p { text-align: center !important; }",
+    /* Restore left-alignment for the feature list items (Public Directory, Expand Access, Shareable Profile) */
+    "  .fm-portal-features { text-align: left !important; }",
+    "  .fm-portal-feature { text-align: left !important; }",
+    "  .fm-pf-text, .fm-pf-text h4, .fm-pf-text p { text-align: left !important; }",
     "}",
     "@media (max-width: 480px) {",
     "  .fm-hero h1 { font-size: 1.75rem; }",
