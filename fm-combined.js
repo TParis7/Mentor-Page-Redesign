@@ -1,20 +1,17 @@
 /**
  * fm-combined.js — For Mentors page builder
  * Pulse of Perseverance Project (P3)
- * v1.3.0 — 2026-04-04
+ * v2.0.0 — 2026-04-04
  *
- * Pattern: same as pp-combined.js (partner page).
- * Loaded via fmmentorloader inline script on the Webflow /for-mentors page.
- * Replaces page body content, injects CSS + fonts, sets up animations.
+ * Pattern: Webflow-native nav/footer + JS content injection.
+ * The /for-mentors page uses P3 Nav, P3 Mobile Overlay, and P3 Footer
+ * Webflow components. This script only replaces the #fm-root div content.
  */
 (function () {
   'use strict';
 
   /* ── image base URL (GitHub Pages CDN) ── */
   var B = 'https://tparis7.github.io/Mentor-Page-Redesign/';
-
-  /* ── Webflow CDN assets ── */
-  var P3_LOGO_SVG = 'https://cdn.prod.website-files.com/69b02f65f0068e9fb16f09f7/69b02f65f0068e9fb16f0df1_P3%20Logo.svg';
 
   /* ── helper: url-encode filename ── */
   function u(path) { return B + encodeURIComponent(path).replace(/%2F/g, '/'); }
@@ -26,9 +23,9 @@
     "*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }",
     "html { scroll-behavior: smooth; }",
     "body.fm-active { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: #1a1a1a; background: #fff; line-height: 1.6; -webkit-font-smoothing: antialiased; margin:0; padding:0; }",
-    "body.fm-active img { max-width: 100%; display: block; }",
-    "body.fm-active a { text-decoration: none; color: inherit; }",
-    "body.fm-active h1, body.fm-active h2, body.fm-active h3, body.fm-active h4 { font-family: 'Space Grotesk', sans-serif; line-height: 1.2; color: inherit; }",
+    "#fm-root img { max-width: 100%; display: block; }",
+    "#fm-root a { text-decoration: none; color: inherit; }",
+    "#fm-root h1, #fm-root h2, #fm-root h3, #fm-root h4 { font-family: 'Space Grotesk', sans-serif; line-height: 1.2; color: inherit; }",
 
     /* ── Utility classes ── */
     ".fm-section-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: #D93A3A; margin-bottom: 12px; }",
@@ -44,34 +41,6 @@
     ".fm-btn-white:hover { background: #b82e2e; border-color: #b82e2e; transform: translateY(-1px); }",
     ".fm-btn-white-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.3); }",
     ".fm-btn-white-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); }",
-
-    /* ═══ NAVBAR (matches .p3-nav from homepage/partner page) ═══ */
-    ".fm-navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; column-gap: 32px; background: transparent; backdrop-filter: none; transition: background 0.3s, box-shadow 0.3s, backdrop-filter 0.3s; }",
-    ".fm-navbar.scrolled { background: rgba(26,26,26,0.95) !important; backdrop-filter: blur(20px) !important; box-shadow: 0 2px 20px rgba(0,0,0,0.15); }",
-    ".fm-nav-logo { width: auto; height: 36px; display: block; position: relative; z-index: 1001; }",
-    ".fm-nav-logo img { max-height: 36px; width: auto; height: auto; object-fit: contain; max-width: 100%; }",
-    ".fm-nav-links { display: flex; align-items: center; column-gap: 32px; margin-left: auto; }",
-    ".fm-navbar .fm-nav-links a { font-family: Inter, sans-serif; font-size: 14px; font-weight: 500; line-height: normal; color: rgba(255,255,255,0.85); text-decoration: none; transition: color 0.2s; }",
-    ".fm-navbar .fm-nav-links a:hover { color: #fff; }",
-    ".fm-navbar .fm-nav-links a.active { color: #D93A3A; font-weight: 600; }",
-    ".fm-nav-links .fm-home-link { display: none; }",
-    ".fm-nav-cta { background: #D93A3A; color: #fff !important; border-radius: 50px; align-items: center; padding: 10px 24px; font-family: Inter, sans-serif; font-size: 14px; font-weight: 600; line-height: normal; text-decoration: none; transition: all 0.2s; display: inline-flex; }",
-    ".fm-nav-cta:hover { background: #b82e2e !important; opacity: 0.9; }",
-    ".fm-mobile-toggle { display: none; cursor: pointer; background: none; border: none; padding: 8px; margin-left: auto; }",
-    ".fm-mobile-toggle span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s ease; }",
-    ".fm-mobile-toggle span + span { margin-top: 5px; }",
-    ".fm-mobile-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 6px); }",
-    ".fm-mobile-toggle.open span:nth-child(2) { opacity: 0; }",
-    ".fm-mobile-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -6px); }",
-
-    /* ── Mobile overlay (matches pp-mob-overlay from partner page) ── */
-    ".fm-mobile-overlay { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(26,10,16,0.97); flex-direction: column; align-items: center; justify-content: center; gap: 28px; }",
-    ".fm-mobile-overlay.open { display: flex !important; }",
-    "body.fm-active .fm-mobile-overlay a { font-family: Inter, sans-serif; font-size: 20px; font-weight: 500; color: #fff; text-decoration: none; transition: opacity 0.2s; }",
-    "body.fm-active .fm-mobile-overlay a:hover { opacity: 0.8; }",
-    "body.fm-active .fm-mobile-overlay a.active { color: #D93A3A; }",
-    ".fm-mobile-overlay .fm-nav-cta { font-size: 16px; padding: 14px 36px; margin-top: 12px; display: inline-block; border-radius: 50px; background: #D93A3A; color: #fff !important; font-weight: 600; }",
-    ".fm-mobile-overlay .fm-nav-cta:hover { opacity: 0.9; }",
 
     /* ═══ HERO ═══ */
     ".fm-hero { padding: 100px 0 40px; background: linear-gradient(135deg, #3a0c18 0%, #4a1020 40%, #2a0e16 100%); color: #fff; position: relative; overflow: hidden; min-height: 550px; display: flex; align-items: flex-start; }",
@@ -238,19 +207,6 @@
     ".fm-cta-section p { font-size: 1.05rem; color: rgba(255,255,255,0.7); max-width: 560px; margin: 0 auto 32px; line-height: 1.7; }",
     ".fm-cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }",
 
-    /* ═══ FOOTER ═══ */
-    ".fm-footer { background: #0a0a0a; color: rgba(255,255,255,0.6); padding: 64px 40px 32px; }",
-    ".fm-footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }",
-    ".fm-footer-brand img { height: 36px; margin-bottom: 16px; filter: brightness(0) invert(1); }",
-    ".fm-footer-brand p { font-size: 13px; line-height: 1.6; max-width: 320px; color: rgba(255,255,255,0.5); }",
-    ".fm-footer-brand .fm-footer-location { margin-top: 8px; font-size: 12px; color: rgba(255,255,255,0.4); }",
-    ".fm-footer-col h4 { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px; }",
-    "body.fm-active .fm-footer-col a { display: block; font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.6); margin-bottom: 10px; transition: color 0.2s; }",
-    "body.fm-active .fm-footer-col a:hover { color: #fff; }",
-    ".fm-footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; justify-content: center; align-items: center; gap: 4px; font-size: 12px; color: rgba(255,255,255,0.4); }",
-    "body.fm-active .fm-footer-bottom a { font-size: 12px; color: rgba(255,255,255,0.4); transition: color 0.2s; }",
-    "body.fm-active .fm-footer-bottom a:hover { color: #fff; }",
-
     /* ═══ RESPONSIVE ═══ */
     "@media (max-width: 1024px) {",
     "  .fm-hero h1 { font-size: 2.4rem; }",
@@ -260,13 +216,6 @@
     "  .fm-portal-grid { grid-template-columns: 1fr; }",
     "  .fm-why-grid { grid-template-columns: repeat(2, 1fr); }",
     "  .fm-gs-steps { grid-template-columns: repeat(2, 1fr); }",
-    "  .fm-footer-grid { grid-template-columns: 1fr 1fr; }",
-    "}",
-    "@media (max-width: 991px) {",
-    "  .fm-navbar { height: 64px; padding: 0 16px; }",
-    "  .fm-nav-links, .fm-nav-cta-desktop { display: none; }",
-    "  .fm-mobile-toggle { display: block; }",
-    "  .fm-nav-logo { height: 30px; }",
     "}",
     "@media (max-width: 768px) {",
     "  .fm-section { padding: 40px 0; }",
@@ -303,9 +252,6 @@
     "  .fm-community-gallery .fm-container { margin-bottom: 24px; }",
     "  .fm-cta-section h2 { font-size: 1.6rem; }",
     "  .fm-cta-section p { font-size: 0.92rem; }",
-    "  .fm-footer { padding: 48px 20px 24px; }",
-    "  .fm-footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }",
-    "  .fm-footer-bottom { flex-direction: column; gap: 12px; text-align: center; }",
     "}",
     "@media (max-width: 480px) {",
     "  .fm-hero h1 { font-size: 1.75rem; }",
@@ -316,7 +262,6 @@
     "  .fm-why-grid { grid-template-columns: 1fr; }",
     "  .fm-milestone-content { grid-template-columns: 1fr; }",
     "  .fm-portal-grid { grid-template-columns: 1fr; }",
-    "  .fm-footer-grid { grid-template-columns: 1fr; }",
     "}"
   ].join('\n');
 
@@ -399,30 +344,6 @@
      4.  HTML TEMPLATE
      ══════════════════════════════════════════════════════════════ */
   var html = [
-    /* ── NAVBAR (matches p3-nav from homepage/partner) ── */
-    '<div class="fm-navbar" id="fm-navbar">',
-    '  <a href="/" class="fm-nav-logo"><img src="' + P3_LOGO_SVG + '" alt="P3 - Pulse of Perseverance" class="fm-nav-logo-img"></a>',
-    '  <div class="fm-nav-links">',
-    '    <a href="/" class="fm-home-link">Home</a>',
-    '    <a href="/for-students">For Students</a>',
-    '    <a href="/partner">For Institutions</a>',
-    '    <a href="/for-mentors" class="active">For Mentors</a>',
-    '    <a href="/about/about">About</a>',
-    '  </div>',
-    '  <a href="/download" class="fm-nav-cta fm-nav-cta-desktop">Get the App</a>',
-    '  <button class="fm-mobile-toggle" id="fm-mobile-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>',
-    '</div>',
-
-    /* ── MOBILE OVERLAY (matches pp-mob-overlay from partner) ── */
-    '<div class="fm-mobile-overlay" id="fm-mobile-overlay">',
-    '  <a href="/">Home</a>',
-    '  <a href="/for-students">For Students</a>',
-    '  <a href="/partner">For Institutions</a>',
-    '  <a href="/for-mentors" class="active">For Mentors</a>',
-    '  <a href="/about/about">About</a>',
-    '  <a href="/download" class="fm-nav-cta">Get the App</a>',
-    '</div>',
-
     /* ── HERO ── */
     '<section class="fm-hero">',
     '  <img src="' + img.heroWatermark + '" alt="" class="fm-hero-watermark">',
@@ -600,18 +521,6 @@
     '  </div>',
     '</section>',
 
-    /* ── FOOTER ── */
-    '<footer class="fm-footer">',
-    '  <div class="fm-container">',
-    '    <div class="fm-footer-grid">',
-    '      <div class="fm-footer-brand"><img src="' + P3_LOGO_SVG + '" alt="P3"><p>Unlocking life-changing opportunities for young visionaries. Free on iOS &amp; Android.</p><div class="fm-footer-location">Chicago, IL &middot; Founded 2018</div></div>',
-    '      <div class="fm-footer-col"><h4>Platform</h4><a href="/for-students">For Students</a><a href="/for-mentors">For Mentors</a><a href="/partner">For Institutions</a><a href="/scholarships">Scholarships</a></div>',
-    '      <div class="fm-footer-col"><h4>About</h4><a href="/about/about">Our Story</a><a href="/about/about#team">Team</a><a href="https://drive.google.com/file/d/1IrFocCsboO6mLZsG3GAlHjmKv_V7a9Sn/view?usp=drive_link" target="_blank">Annual Report</a><a href="/about/in-the-press">Press</a></div>',
-    '      <div class="fm-footer-col"><h4>Connect</h4><a href="https://www.instagram.com/pulseofp3/" target="_blank">Instagram</a><a href="https://www.linkedin.com/company/pulseofperseverance/" target="_blank">LinkedIn</a><a href="https://www.youtube.com/@PulseofPerseveranceProject" target="_blank">YouTube</a><a href="/donate">Donate</a></div>',
-    '    </div>',
-    '    <div class="fm-footer-bottom"><span>&copy; 2026 Pulse of Perseverance Project. All rights reserved.</span><span>&middot;</span><a href="/app-terms-conditions">Terms &amp; Conditions</a></div>',
-    '  </div>',
-    '</footer>'
   ].join('\n');
 
   /* ══════════════════════════════════════════════════════════════
@@ -643,23 +552,34 @@
     style.textContent = css;
     document.head.appendChild(style);
 
-    /* ── Replace body content ── */
-    document.body.className = 'fm-active';
-    document.body.innerHTML = html;
+    /* ── Inject content into #fm-root (Webflow-native nav/footer stay untouched) ── */
+    document.body.classList.add('fm-active');
+    var root = document.getElementById('fm-root');
+    if (root) root.innerHTML = html;
+
     /* Remove FOUC hider (if present from loader script) */
     var fouc = document.getElementById('fm-fouc-hide');
     if (fouc) fouc.remove();
     document.body.style.opacity = '1';
 
-    /* ── Scroll-darken navbar (threshold 50px, matches partner page) ── */
-    var navbar = document.getElementById('fm-navbar');
+    /* ── Scroll-darken navbar (P3 Nav component uses .p3-nav class) ── */
+    var navbar = document.querySelector('.p3-nav');
     window.addEventListener('scroll', function () {
       if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    /* ── Mobile menu toggle (matches partner page behavior) ── */
-    var toggle = document.getElementById('fm-mobile-toggle');
-    var overlay = document.getElementById('fm-mobile-overlay');
+    /* ── Add mobile toggle button to P3 Nav (matches partner page .pp-mob-menu) ── */
+    if (navbar && !navbar.querySelector('.pp-mob-menu')) {
+      var mobBtn = document.createElement('div');
+      mobBtn.className = 'pp-mob-menu';
+      mobBtn.setAttribute('aria-label', 'Menu');
+      mobBtn.innerHTML = '<span></span><span></span><span></span>';
+      navbar.appendChild(mobBtn);
+    }
+
+    /* ── Wire up mobile toggle → P3 Mobile Overlay (matches partner page behavior) ── */
+    var toggle = navbar && navbar.querySelector('.pp-mob-menu');
+    var overlay = document.querySelector('.pp-mob-overlay');
     if (toggle && overlay) {
       toggle.addEventListener('click', function () {
         toggle.classList.toggle('open');
