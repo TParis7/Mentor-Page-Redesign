@@ -1,7 +1,7 @@
 /**
  * fm-combined.js — For Mentors page builder
  * Pulse of Perseverance Project (P3)
- * v1.1.0 — 2026-04-04
+ * v1.2.0 — 2026-04-04
  *
  * Pattern: same as pp-combined.js (partner page).
  * Loaded via fmmentorloader inline script on the Webflow /for-mentors page.
@@ -28,7 +28,7 @@
     "body.fm-active { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: #1a1a1a; background: #fff; line-height: 1.6; -webkit-font-smoothing: antialiased; margin:0; padding:0; }",
     "body.fm-active img { max-width: 100%; display: block; }",
     "body.fm-active a { text-decoration: none; color: inherit; }",
-    "body.fm-active h1, body.fm-active h2, body.fm-active h3, body.fm-active h4 { font-family: 'Space Grotesk', sans-serif; line-height: 1.2; }",
+    "body.fm-active h1, body.fm-active h2, body.fm-active h3, body.fm-active h4 { font-family: 'Space Grotesk', sans-serif; line-height: 1.2; color: inherit; }",
 
     /* ── Utility classes ── */
     ".fm-section-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: #D93A3A; margin-bottom: 12px; }",
@@ -45,28 +45,33 @@
     ".fm-btn-white-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.3); }",
     ".fm-btn-white-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); }",
 
-    /* ═══ NAVBAR ═══ */
-    ".fm-navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; background: transparent; transition: background 0.3s, box-shadow 0.3s; }",
-    ".fm-navbar.scrolled { background: rgba(26,10,10,0.95); backdrop-filter: blur(12px); box-shadow: 0 2px 20px rgba(0,0,0,0.2); }",
-    ".fm-nav-logo img { height: 36px; }",
-    ".fm-nav-links { display: flex; align-items: center; gap: 32px; }",
-    ".fm-navbar .fm-nav-links a { font-size: 0.875rem; font-weight: 500; color: rgba(255,255,255,0.85); transition: color 0.2s; }",
+    /* ═══ NAVBAR (matches .p3-nav from homepage/partner page) ═══ */
+    ".fm-navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; column-gap: 32px; background: transparent; backdrop-filter: none; transition: background 0.3s, box-shadow 0.3s, backdrop-filter 0.3s; }",
+    ".fm-navbar.scrolled { background: rgba(26,26,26,0.95) !important; backdrop-filter: blur(20px) !important; box-shadow: 0 2px 20px rgba(0,0,0,0.15); }",
+    ".fm-nav-logo { width: auto; height: 36px; display: block; position: relative; z-index: 1001; }",
+    ".fm-nav-logo img { max-height: 36px; width: auto; height: auto; object-fit: contain; max-width: 100%; }",
+    ".fm-nav-links { display: flex; align-items: center; column-gap: 32px; margin-left: auto; }",
+    ".fm-navbar .fm-nav-links a { font-family: Inter, sans-serif; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.85); text-decoration: none; transition: color 0.2s; }",
     ".fm-navbar .fm-nav-links a:hover { color: #fff; }",
     ".fm-navbar .fm-nav-links a.active { color: #D93A3A; font-weight: 600; }",
-    ".fm-nav-cta { background: #D93A3A; color: #fff !important; padding: 10px 24px; border-radius: 50px; font-weight: 600; }",
-    ".fm-nav-cta:hover { background: #b82e2e !important; }",
-    ".fm-mobile-toggle { display: none; cursor: pointer; background: none; border: none; padding: 8px; }",
-    ".fm-mobile-toggle span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; transition: all 0.3s; }",
+    ".fm-nav-links .fm-home-link { display: none; }",
+    ".fm-nav-cta { background: #D93A3A; color: #fff !important; border-radius: 50px; align-items: center; padding: 10px 24px; font-family: Inter, sans-serif; font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s; display: inline-flex; }",
+    ".fm-nav-cta:hover { background: #b82e2e !important; opacity: 0.9; }",
+    ".fm-mobile-toggle { display: none; cursor: pointer; background: none; border: none; padding: 8px; margin-left: auto; }",
+    ".fm-mobile-toggle span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s ease; }",
+    ".fm-mobile-toggle span + span { margin-top: 5px; }",
+    ".fm-mobile-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 6px); }",
+    ".fm-mobile-toggle.open span:nth-child(2) { opacity: 0; }",
+    ".fm-mobile-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -6px); }",
 
-    /* ── Mobile overlay ── */
-    ".fm-mobile-overlay { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(26,10,10,0.97); flex-direction: column; align-items: center; justify-content: center; gap: 24px; }",
-    ".fm-mobile-overlay.open { display: flex; }",
-    "body.fm-active .fm-mobile-overlay a { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 600; color: rgba(255,255,255,0.85); transition: color 0.2s; }",
-    "body.fm-active .fm-mobile-overlay a:hover { color: #fff; }",
+    /* ── Mobile overlay (matches pp-mob-overlay from partner page) ── */
+    ".fm-mobile-overlay { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(26,10,16,0.97); flex-direction: column; align-items: center; justify-content: center; gap: 28px; }",
+    ".fm-mobile-overlay.open { display: flex !important; }",
+    "body.fm-active .fm-mobile-overlay a { font-family: Inter, sans-serif; font-size: 20px; font-weight: 500; color: #fff; text-decoration: none; transition: opacity 0.2s; }",
+    "body.fm-active .fm-mobile-overlay a:hover { opacity: 0.8; }",
     "body.fm-active .fm-mobile-overlay a.active { color: #D93A3A; }",
-    ".fm-mobile-overlay .fm-nav-cta { font-size: 1rem; padding: 14px 36px; margin-top: 12px; display: inline-block; border-radius: 50px; }",
-    ".fm-mobile-close { position: absolute; top: 20px; right: 24px; background: none; border: none; cursor: pointer; }",
-    ".fm-mobile-close svg { width: 28px; height: 28px; stroke: #fff; }",
+    ".fm-mobile-overlay .fm-nav-cta { font-size: 16px; padding: 14px 36px; margin-top: 12px; display: inline-block; border-radius: 50px; background: #D93A3A; color: #fff !important; font-weight: 600; }",
+    ".fm-mobile-overlay .fm-nav-cta:hover { opacity: 0.9; }",
 
     /* ═══ HERO ═══ */
     ".fm-hero { padding: 100px 0 40px; background: linear-gradient(135deg, #3a0c18 0%, #4a1020 40%, #2a0e16 100%); color: #fff; position: relative; overflow: hidden; min-height: 550px; display: flex; align-items: flex-start; }",
@@ -257,11 +262,13 @@
     "  .fm-gs-steps { grid-template-columns: repeat(2, 1fr); }",
     "  .fm-footer-grid { grid-template-columns: 1fr 1fr; }",
     "}",
-    "@media (max-width: 768px) {",
-    "  .fm-navbar { padding: 16px 20px; background: transparent; backdrop-filter: none; }",
-    "  .fm-navbar.scrolled { background: rgba(26,10,10,0.95); backdrop-filter: blur(12px); }",
-    "  .fm-nav-links { display: none; }",
+    "@media (max-width: 991px) {",
+    "  .fm-navbar { height: 64px; padding: 0 16px; }",
+    "  .fm-nav-links, .fm-nav-cta-desktop { display: none; }",
     "  .fm-mobile-toggle { display: block; }",
+    "  .fm-nav-logo { height: 30px; }",
+    "}",
+    "@media (max-width: 768px) {",
     "  .fm-section { padding: 40px 0; }",
     "  .fm-hero { padding: 120px 0 48px; min-height: auto; }",
     "  .fm-hero .fm-container { padding: 0 28px; }",
@@ -339,7 +346,7 @@
     heroWatermark: u('Copy of Versus_P3_20260910-IMG9096_MollJeanNye.jpg'),
     newMentor: u('new-mentor.jpeg'),
     hospital: u('hospital.jpeg'),
-    starterPack: u('mentor-starter-pack-mobile.png'),
+    starterPack: u('Mentor training guide cover design.png'),
     groupPhoto: u('1760104448089.jpeg'),
     communityUplift: u('community-uplift.jpg'),
     dashboard: u('Dashboard mockup1.png'),
@@ -392,22 +399,22 @@
      4.  HTML TEMPLATE
      ══════════════════════════════════════════════════════════════ */
   var html = [
-    /* ── NAVBAR ── */
-    '<nav class="fm-navbar" id="fm-navbar">',
-    '  <a href="/" class="fm-nav-logo"><img src="' + P3_LOGO_SVG + '" alt="P3 - Pulse of Perseverance"></a>',
+    /* ── NAVBAR (matches p3-nav from homepage/partner) ── */
+    '<div class="fm-navbar" id="fm-navbar">',
+    '  <a href="/" class="fm-nav-logo"><img src="' + P3_LOGO_SVG + '" alt="P3 - Pulse of Perseverance" class="fm-nav-logo-img"></a>',
     '  <div class="fm-nav-links">',
+    '    <a href="/" class="fm-home-link">Home</a>',
     '    <a href="/for-students">For Students</a>',
     '    <a href="/partner">For Institutions</a>',
     '    <a href="/for-mentors" class="active">For Mentors</a>',
     '    <a href="/about/about">About</a>',
-    '    <a href="/download" class="fm-nav-cta">Get the App</a>',
     '  </div>',
+    '  <a href="/download" class="fm-nav-cta fm-nav-cta-desktop">Get the App</a>',
     '  <button class="fm-mobile-toggle" id="fm-mobile-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>',
-    '</nav>',
+    '</div>',
 
-    /* ── MOBILE OVERLAY ── */
+    /* ── MOBILE OVERLAY (matches pp-mob-overlay from partner) ── */
     '<div class="fm-mobile-overlay" id="fm-mobile-overlay">',
-    '  <button class="fm-mobile-close" id="fm-mobile-close" aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>',
     '  <a href="/">Home</a>',
     '  <a href="/for-students">For Students</a>',
     '  <a href="/partner">For Institutions</a>',
@@ -639,23 +646,33 @@
     /* ── Replace body content ── */
     document.body.className = 'fm-active';
     document.body.innerHTML = html;
+    /* Remove FOUC hider (if present from loader script) */
+    var fouc = document.getElementById('fm-fouc-hide');
+    if (fouc) fouc.remove();
+    document.body.style.opacity = '1';
 
-    /* ── Scroll-darken navbar ── */
+    /* ── Scroll-darken navbar (threshold 50px, matches partner page) ── */
     var navbar = document.getElementById('fm-navbar');
     window.addEventListener('scroll', function () {
-      if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 20);
+      if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    /* ── Mobile menu toggle ── */
+    /* ── Mobile menu toggle (matches partner page behavior) ── */
     var toggle = document.getElementById('fm-mobile-toggle');
     var overlay = document.getElementById('fm-mobile-overlay');
-    var closeBtn = document.getElementById('fm-mobile-close');
     if (toggle && overlay) {
-      toggle.addEventListener('click', function () { overlay.classList.add('open'); });
-      if (closeBtn) closeBtn.addEventListener('click', function () { overlay.classList.remove('open'); });
+      toggle.addEventListener('click', function () {
+        toggle.classList.toggle('open');
+        overlay.classList.toggle('open');
+        document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
+      });
       /* Close on link click */
       overlay.querySelectorAll('a').forEach(function (a) {
-        a.addEventListener('click', function () { overlay.classList.remove('open'); });
+        a.addEventListener('click', function () {
+          toggle.classList.remove('open');
+          overlay.classList.remove('open');
+          document.body.style.overflow = '';
+        });
       });
     }
   }
