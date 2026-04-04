@@ -1,7 +1,7 @@
 /**
  * fm-combined.js — For Mentors page builder
  * Pulse of Perseverance Project (P3)
- * v2.0.2 — 2026-04-04
+ * v2.1.0 — 2026-04-04
  *
  * Pattern: Webflow-native nav/footer + JS content injection.
  * The /for-mentors page uses P3 Nav, P3 Mobile Overlay, and P3 Footer
@@ -27,6 +27,8 @@
     "#fm-root img { max-width: 100%; display: block; }",
     "#fm-root a { text-decoration: none; color: inherit; }",
     "#fm-root h1, #fm-root h2, #fm-root h3, #fm-root h4 { font-family: 'Space Grotesk', sans-serif; line-height: 1.2; color: inherit; }",
+    "#fm-root a.fm-btn-primary, #fm-root a.fm-btn-white { color: #fff; }",
+    "#fm-root a.fm-btn-white-outline { color: #fff; }",
 
     /* ── Utility classes ── */
     ".fm-section-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: #D93A3A; margin-bottom: 12px; }",
@@ -77,7 +79,7 @@
     ".fm-why-card-img img.top-align { object-position: center top; }",
     ".fm-why-card:hover .fm-why-card-img img { transform: scale(1.05); }",
     ".fm-why-card-img .fm-why-card-overlay { position: absolute; bottom: 0; left: 0; right: 0; }",
-    ".fm-why-card-img .fm-why-card-overlay h3 { color: #fff; font-size: 1.1rem; font-weight: 700; background: rgba(0,0,0,0.55); padding: 10px 16px; backdrop-filter: blur(2px); }",
+    "#fm-root .fm-why-card-img .fm-why-card-overlay h3 { color: #fff; font-size: 1.1rem; font-weight: 700; background: rgba(0,0,0,0.55); padding: 10px 16px; backdrop-filter: blur(2px); }",
     ".fm-why-card-body { padding: 20px; }",
     ".fm-why-card-role { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #D93A3A; margin-bottom: 8px; }",
     ".fm-why-card-body p { font-size: 0.88rem; color: #555; line-height: 1.6; margin-bottom: 12px; }",
@@ -208,7 +210,22 @@
     ".fm-cta-section p { font-size: 1.05rem; color: rgba(255,255,255,0.7); max-width: 560px; margin: 0 auto 32px; line-height: 1.7; }",
     ".fm-cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }",
 
+    /* ═══ HAMBURGER MENU + MOBILE OVERLAY ═══ */
+    ".pp-mob-menu { z-index: 1001; cursor: pointer; flex-direction: column; gap: 5px; padding: 8px; display: none; }",
+    ".pp-mob-menu span { background-color: #fff; border-radius: 2px; width: 22px; height: 2px; display: block; transition: all 0.3s ease; }",
+    ".pp-mob-menu.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 6px); }",
+    ".pp-mob-menu.open span:nth-child(2) { opacity: 0; }",
+    ".pp-mob-menu.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -6px); }",
+    ".pp-mob-overlay { z-index: 999; background-color: rgba(26, 10, 16, 0.97); flex-direction: column; justify-content: center; align-items: center; gap: 28px; display: none; position: fixed; inset: 0; }",
+    ".pp-mob-overlay.open { display: flex !important; }",
+    ".pp-mob-overlay a { opacity: 0.85; color: #fff; font-family: Inter, sans-serif; font-size: 1.25rem; font-weight: 500; text-decoration: none; }",
+    ".pp-mob-overlay a:last-child { color: #fff; background-color: #D93A3A; border-radius: 100px; margin-top: 8px; padding: 12px 32px; font-size: 1rem; font-weight: 600; }",
+
     /* ═══ RESPONSIVE ═══ */
+    "@media (max-width: 991px) {",
+    "  .pp-mob-menu { display: flex; }",
+    "  .p3-nav-links, .p3-nav-cta { display: none !important; }",
+    "}",
     "@media (max-width: 1024px) {",
     "  .fm-hero h1 { font-size: 2.4rem; }",
     "  .fm-hero-watermark { width: 70%; opacity: 0.12; }",
@@ -253,6 +270,10 @@
     "  .fm-community-gallery .fm-container { margin-bottom: 24px; }",
     "  .fm-cta-section h2 { font-size: 1.6rem; }",
     "  .fm-cta-section p { font-size: 0.92rem; }",
+    "  .fm-portal-text { text-align: center; }",
+    "  .fm-portal-text .fm-section-label { text-align: center; }",
+    "  .fm-portal-text .fm-btn { display: inline-flex; }",
+    "  .fm-portal-features { align-items: center; }",
     "}",
     "@media (max-width: 480px) {",
     "  .fm-hero h1 { font-size: 1.75rem; }",
@@ -292,7 +313,7 @@
     heroWatermark: u('Copy of Versus_P3_20260910-IMG9096_MollJeanNye.jpg'),
     newMentor: u('new-mentor.jpeg'),
     hospital: u('hospital.jpeg'),
-    starterPack: u('Mentor training guide cover design.png'),
+    starterPack: u('VersusWoman.png'),
     groupPhoto: u('1760104448089.jpeg'),
     communityUplift: u('community-uplift.jpg'),
     dashboard: u('Dashboard mockup1.png'),
@@ -475,7 +496,6 @@
     '        <div class="fm-portal-browser-bar"><div class="fm-browser-dot red"></div><div class="fm-browser-dot yellow"></div><div class="fm-browser-dot green"></div><div class="fm-portal-url">mentors.pulseofp3.org</div></div>',
     '        <div class="fm-portal-screenshot">',
     '          <div class="fm-portal-screenshot-header"><img src="' + img.p3LogoStacked + '" alt="P3" style="height:36px;"><span>National Mentor Portal</span></div>',
-    '          <p style="font-size:0.8rem; color:#666; margin-bottom:16px; text-align:left;">Submit a question to one of our mentors and you could get a video answer right in the P3 app.</p>',
     '          <div class="fm-portal-cards">',
     '            <div class="fm-portal-card"><div class="fm-portal-avatar"><img src="' + u('mentors/01JVT9G1S3S9H3D3FFKF9M5K7N.jpg') + '" alt="Thomas Paris"></div><div class="fm-portal-card-name">Thomas Paris</div><div class="fm-portal-card-role">Chief Operating Officer</div><div class="fm-portal-card-badge">Operations</div></div>',
     '            <div class="fm-portal-card"><div class="fm-portal-avatar" style="background:linear-gradient(135deg,#2c5aa0,#4a90d9);"><img src="' + u('mentors/01J9NVS90T9N1P16JT92N94QZB.jpg') + '" alt="Alfred Edmond"></div><div class="fm-portal-card-name">Alfred Edmond</div><div class="fm-portal-card-role">S. Vice President</div><div class="fm-portal-card-badge">Business</div></div>',
@@ -596,6 +616,64 @@
         });
       });
     }
+
+    /* ── Patch P3 Footer to match partner/homepage footer content ── */
+    (function patchFooter() {
+      var footer = document.querySelector('.p3-footer, [class*="footer-v2"], footer');
+      if (!footer) return;
+
+      /* Fix tagline text */
+      var tagline = footer.querySelector('p');
+      if (tagline && tagline.textContent.indexOf('Unlocking') >= 0) {
+        tagline.textContent = 'Unlocking life-changing opportunities for young visionaries. Free on iOS & Android.';
+      }
+
+      /* Fix location text */
+      var allP = footer.querySelectorAll('p');
+      allP.forEach(function(p) {
+        if (p.textContent.trim() === 'Chicago, IL') {
+          p.textContent = 'Chicago, IL \u00B7 Founded 2018';
+        }
+      });
+
+      /* Add missing CONNECT links (YouTube, Donate) and remove email */
+      var connectLinks = footer.querySelectorAll('a');
+      connectLinks.forEach(function(a) {
+        var txt = a.textContent.trim();
+        if (txt === 'team@pulseofp3.org') {
+          a.remove();
+        }
+      });
+
+      /* Find CONNECT column and add YouTube + Donate */
+      var headings = footer.querySelectorAll('h6, h5, h4, [class*="heading"], strong');
+      headings.forEach(function(h) {
+        if (h.textContent.trim().toUpperCase() === 'CONNECT') {
+          var col = h.parentElement;
+          if (col) {
+            var links = col.querySelectorAll('a');
+            var lastLink = links[links.length - 1];
+            if (lastLink) {
+              var yt = document.createElement('a');
+              yt.href = 'https://www.youtube.com/@PulseofPerseverance';
+              yt.target = '_blank';
+              yt.textContent = 'YouTube';
+              yt.style.cssText = lastLink.style.cssText;
+              yt.className = lastLink.className;
+
+              var don = document.createElement('a');
+              don.href = '/donate';
+              don.textContent = 'Donate';
+              don.style.cssText = lastLink.style.cssText;
+              don.className = lastLink.className;
+
+              lastLink.parentElement.appendChild(yt);
+              lastLink.parentElement.appendChild(don);
+            }
+          }
+        }
+      });
+    })();
   }
 
   /* ── Run ── */
