@@ -31,7 +31,7 @@
     "#fm-root a.fm-btn-white-outline { color: #fff; }",
 
     /* ── Utility classes ── */
-    ".fm-section-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: #D93A3A; margin-bottom: 12px; }",
+    ".fm-section-label { display: inline-flex; align-items: center; padding: 4px 12px; border-radius: 100px; background: rgba(217,58,58,0.08); color: #D93A3A; font-family: 'Satoshi', 'Inter', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }",
     ".fm-section-heading { font-size: 2.4rem; font-weight: 700; margin-bottom: 16px; color: #1a1a1a; }",
     ".fm-section-heading em { font-style: normal; color: #D93A3A; }",
     ".fm-section-sub { font-size: 1.05rem; color: #555; max-width: 640px; line-height: 1.7; }",
@@ -44,7 +44,7 @@
     ".fm-btn-white:hover { background: #b82e2e; border-color: #b82e2e; transform: translateY(-1px); }",
     /* Arrow modifier — matches partner page .ba pattern exactly (gap 6, ml 3) */
     ".fm-btn-arrow { gap: 6px !important; }",
-    ".fm-btn-arrow::after { content: '\\2192'; margin-left: 3px; transition: transform .25s cubic-bezier(.25,.46,.45,.94); }",
+    ".fm-btn-arrow::after { content: '\\2192'; margin-left: 3px; font-family: 'Satoshi', 'Inter', sans-serif; font-size: 14px; transition: transform .25s cubic-bezier(.25,.46,.45,.94); }",
     ".fm-btn-arrow:hover::after { transform: translateX(3px); }",
     ".fm-btn-white-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.3); }",
     ".fm-btn-white-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); }",
@@ -282,10 +282,9 @@
     "  .fm-milestones .fm-container > .fm-section-label,",
     "  .fm-milestones .fm-container > .fm-section-heading,",
     "  .fm-milestones .fm-container > .fm-section-sub { text-align: center !important; }",
-    "  .fm-milestones .fm-container > .fm-section-label { display: inline-block; margin-left: 50%; transform: translateX(-50%); }",
     /* Center Portal text block (Get discovered + National Mentor Portal) on mobile */
     "  .fm-portal-text { text-align: center !important; }",
-    "  .fm-portal-text > .fm-section-label { display: inline-block; white-space: nowrap; }",
+    "  .fm-portal-text > .fm-section-label { white-space: nowrap; }",
     "  .fm-portal-text > h3 { text-align: center !important; }",
     "  .fm-portal-text > p { text-align: center !important; }",
     /* Restore left-alignment for the feature list items (Public Directory, Expand Access, Shareable Profile) */
@@ -575,7 +574,7 @@
 
     var link2 = document.createElement('link');
     link2.rel = 'stylesheet';
-    link2.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap';
+    link2.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Satoshi:wght@400;600;700&display=swap';
     document.head.appendChild(link2);
 
     /* ── Fix OG image to match homepage ── */
