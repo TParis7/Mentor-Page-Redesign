@@ -74,7 +74,8 @@
 
     /* ═══ WHY MENTOR ═══ */
     ".fm-why-mentor { background: #fff; }",
-    ".fm-why-mentor .fm-container > .fm-section-label, .fm-why-mentor .fm-container > .fm-section-heading, .fm-why-mentor .fm-container > .fm-section-sub { text-align: center; }",
+    ".fm-why-mentor .fm-container > .fm-section-label { display: flex; width: fit-content; margin-left: auto; margin-right: auto; }",
+    ".fm-why-mentor .fm-container > .fm-section-heading, .fm-why-mentor .fm-container > .fm-section-sub { text-align: center; }",
     ".fm-why-mentor .fm-container > .fm-section-sub { margin: 0 auto; }",
     ".fm-why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; }",
     ".fm-why-card { background: #fff; border-radius: 16px; overflow: hidden; border: 1px solid #eee; transition: all 0.3s ease; }",
@@ -279,7 +280,7 @@
     "  .fm-cta-section p { font-size: 0.92rem; }",
     "  .fm-portal-text .fm-btn { display: block; margin: 0 auto; width: fit-content; }",
     /* Center Pathway Milestones heading + label on mobile */
-    "  .fm-milestones .fm-container > .fm-section-label,",
+    "  .fm-milestones .fm-container > .fm-section-label { display: flex !important; width: fit-content; margin-left: auto !important; margin-right: auto !important; }",
     "  .fm-milestones .fm-container > .fm-section-heading,",
     "  .fm-milestones .fm-container > .fm-section-sub { text-align: center !important; }",
     /* Center Portal text block (Get discovered + National Mentor Portal) on mobile */
