@@ -1,7 +1,7 @@
 /**
  * fm-combined.js — For Mentors page builder
  * Pulse of Perseverance Project (P3)
- * v2.0.1 — 2026-04-04
+ * v2.0.2 — 2026-04-04
  *
  * Pattern: Webflow-native nav/footer + JS content injection.
  * The /for-mentors page uses P3 Nav, P3 Mobile Overlay, and P3 Footer
@@ -22,8 +22,8 @@
   var css = [
     "*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }",
     "html { scroll-behavior: smooth; }",
-    "body.fm-active { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: #1a1a1a; background: #fff; -webkit-font-smoothing: antialiased; margin:0; padding:0; }",
-    "#fm-root { line-height: 1.6; }",
+    "body.fm-active { background: #fff; margin:0; padding:0; }",
+    "#fm-root { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: #1a1a1a; -webkit-font-smoothing: antialiased; line-height: 1.6; }",
     "#fm-root img { max-width: 100%; display: block; }",
     "#fm-root a { text-decoration: none; color: inherit; }",
     "#fm-root h1, #fm-root h2, #fm-root h3, #fm-root h4 { font-family: 'Space Grotesk', sans-serif; line-height: 1.2; color: inherit; }",
