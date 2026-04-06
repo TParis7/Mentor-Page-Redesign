@@ -556,7 +556,7 @@
     '    <p>Apply today to join our community of mentors. Through the P3 app, you\'ll connect directly with ambitious students who need your experience, guidance, and support.</p>',
     '    <div class="fm-cta-buttons">',
     '      <a href="/download" class="fm-btn fm-btn-white fm-btn-arrow">Become a Mentor</a>',
-    '      <a href="mailto:mentors@pulseofp3.org" class="fm-btn fm-btn-white-outline">Contact Us</a>',
+    '      <a href="https://calendar.app.google/HWHVSUkDqED55EXf7" target="_blank" class="fm-btn fm-btn-white-outline">Contact Us</a>',
     '    </div>',
     '  </div>',
     '</section>',
