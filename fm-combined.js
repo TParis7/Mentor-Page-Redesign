@@ -371,7 +371,7 @@
     '      <p>Join a community of industry professionals on your schedule \u2014 powered by AI smart matching, delivered through short videos.</p>',
     '      <div class="fm-hero-buttons">',
     '        <a href="/download" class="fm-btn fm-btn-white fm-btn-arrow">Become a Mentor</a>',
-    '        <a href="#fm-get-started" class="fm-btn fm-btn-white-outline">How It Works</a>',
+    '        <a href="https://platform.pulseofp3.org/demos/" target="_blank" rel="noopener" class="fm-btn fm-btn-white-outline">Try the Demo</a>',
     '      </div>',
     '      <div class="fm-hero-stats">',
     '        <div><div class="fm-hero-stat-num">1,000+</div><div class="fm-hero-stat-label">Registered Users</div></div>',
