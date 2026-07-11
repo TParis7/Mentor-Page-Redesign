@@ -170,15 +170,6 @@
     ".fm-browser-url { flex: 1; max-width: 320px; margin: 0 auto; background: rgba(255,255,255,0.07); border-radius: 6px; font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.55); text-align: center; padding: 4px 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }",
     ".fm-browser img { width: 100%; display: block; }",
 
-    /* ═══ DEMO BAND — platform-page style ═══ */
-    ".fm-demo { padding: 72px 0; text-align: center; position: relative; overflow: hidden; background-image: linear-gradient(180deg, rgba(250,247,244,0.86) 0%, rgba(250,247,244,0.8) 50%, rgba(250,247,244,0.86) 100%), url('https://tparis7.github.io/Platform-Page/images/campus-bg.jpg'); background-size: cover, cover; background-position: 50% 50%, 50% 42%; background-repeat: no-repeat, no-repeat; background-color: #FAF7F4; }",
-    ".fm-demo .fm-container { position: relative; z-index: 1; }",
-    ".fm-demo h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2.4rem; font-weight: 700; line-height: 1.1; color: #111; margin-bottom: 16px; }",
-    ".fm-demo h2 em { font-style: normal; color: #D93A3A; }",
-    ".fm-demo p { font-size: 1rem; color: #666; line-height: 1.65; margin: 0 auto 30px; max-width: 540px; }",
-    ".fm-demo-btn { display: inline-flex; align-items: center; gap: 10px; background: #D93A3A; color: #fff; padding: 15px 32px; border-radius: 100px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: all 0.35s; box-shadow: 0 12px 34px rgba(217,58,58,0.35); }",
-    ".fm-demo-btn:hover { opacity: 0.92; transform: translateY(-2px); box-shadow: 0 16px 40px rgba(217,58,58,0.45); }",
-
     /* ═══ COMMUNITY GALLERY ═══ */
     ".fm-community-gallery { padding: 48px 0; background: #fff; overflow: hidden; }",
     ".fm-community-gallery .fm-container { text-align: center; margin-bottom: 28px; }",
@@ -258,8 +249,6 @@
     "  .fm-why-card-role { font-size: 0.72rem; margin-bottom: 6px; }",
     "  .fm-feature-row { gap: 24px; margin-bottom: 32px; }",
     "  .fm-feature-text h3 { font-size: 1.2rem; }",
-    "  .fm-demo h2 { font-size: 1.6rem; }",
-    "  .fm-demo p { font-size: 0.92rem; }",
     "  .fm-cta-badges img { height: 42px; }",
     "  .fm-community-gallery .fm-container { margin-bottom: 24px; }",
     "  .fm-cta-section h2 { font-size: 1.6rem; }",
@@ -375,7 +364,7 @@
     '      </div>',
     '      <div class="fm-hero-stats">',
     '        <div><div class="fm-hero-stat-num">1,000+</div><div class="fm-hero-stat-label">Registered Users</div></div>',
-    '        <div><div class="fm-hero-stat-num">99%</div><div class="fm-hero-stat-label">Match Retention</div></div>',
+    '        <div><div class="fm-hero-stat-num">+90%</div><div class="fm-hero-stat-label">Match Retention</div></div>',
     '        <div><div class="fm-hero-stat-num">20+</div><div class="fm-hero-stat-label">Partner Organizations</div></div>',
     '      </div>',
     '    </div>',
@@ -479,18 +468,6 @@
     '    </div>',
     '  </div>',
     '</section>',
-
-    /* ── DEMO BAND ── */
-    '<section class="fm-demo">',
-    '  <div class="fm-container">',
-    '    <div class="fm-section-label">See for yourself</div>',
-    '    <h2>Try it now, <em>no account needed.</em></h2>',
-    '    <p>One click opens a full working preview of the mentor workspace with sample data. Nothing to install, nothing to sign up for.</p>',
-    '    <a href="https://platform.pulseofp3.org/demos" class="fm-demo-btn" target="_blank" rel="noopener">Try the Demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>',
-    '  </div>',
-    '</section>',
-
-    /* NOTE: Mentor Spotlight section intentionally removed */
 
     /* ── COMMUNITY GALLERY ── */
     '<section class="fm-community-gallery">',
