@@ -634,8 +634,8 @@
         cp.style.cssText = 'margin:0;color:rgba(255,255,255,0.4);font-size:12px;';
         bottom.appendChild(cp);
         var tc = document.createElement('a');
-        tc.href = '/terms-conditions';
-        tc.textContent = 'Terms & Conditions';
+        tc.href = 'https://www.pulseofp3.org/app-terms-conditions';
+        tc.textContent = 'Terms & Policies';
         tc.className = 'p3-footer-link';
         tc.style.cssText = 'font-size:12px;text-decoration:underline;color:rgba(255,255,255,0.4);';
         bottom.appendChild(tc);
