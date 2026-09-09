@@ -644,6 +644,9 @@
         }
       });
 
+      /* For Institutions leads to the Enterprise overview (Sep 9 2026); /partner is being retired */
+      footer.querySelectorAll('a[href*="/partner"]').forEach(function (a) { a.href = 'https://enterprise.pulseofp3.org/overview'; });
+
       /* Add missing CONNECT links (YouTube, Donate) and remove email */
       var connectLinks = footer.querySelectorAll('a');
       connectLinks.forEach(function(a) {
