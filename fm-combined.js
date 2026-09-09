@@ -365,7 +365,7 @@
     '        <a href="https://platform.pulseofp3.org/demos/" target="_blank" rel="noopener" class="fm-btn fm-btn-white-outline">Try the Demo</a>',
     '      </div>',
     '      <div class="fm-hero-stats">',
-    '        <div><div class="fm-hero-stat-num">1,000+</div><div class="fm-hero-stat-label">Registered Users</div></div>',
+    '        <div><div class="fm-hero-stat-num">1,200+</div><div class="fm-hero-stat-label">Registered Users</div></div>',
     '        <div><div class="fm-hero-stat-num">+90%</div><div class="fm-hero-stat-label">Match Retention</div></div>',
     '        <div><div class="fm-hero-stat-num">20+</div><div class="fm-hero-stat-label">Partner Organizations</div></div>',
     '      </div>',
