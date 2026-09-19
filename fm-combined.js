@@ -122,6 +122,8 @@
     ".fm-gs-step-img { height: 160px; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; border-radius: 16px 16px 0 0; }",
     ".fm-gs-step-abstract { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }",
     ".fm-gs-step-abstract svg { width: 80px; height: 80px; opacity: 0.95; }",
+    /* Step number: its own badge tucked beside the icon, same spot in every card (Thomas, Sep 19 2026) */
+    ".fm-gs-num { position: absolute; left: calc(50% - 58px); top: max(8px, calc(50% - 56px)); z-index: 2; width: 28px; height: 28px; border-radius: 50%; background: var(--gs, #D93A3A); color: #fff; font-family: 'Bricolage Grotesque', sans-serif; font-size: 15px; font-weight: 700; line-height: 1; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 2.5px #fff; }",
     ".fm-gs-step-abstract.bg-1 { background: linear-gradient(135deg, #f8e8e8, #f0d4d4); }",
     ".fm-gs-step-abstract.bg-2 { background: linear-gradient(135deg, #e8e8f8, #d4d4f0); }",
     ".fm-gs-step-abstract.bg-3 { background: linear-gradient(135deg, #e8f5e8, #d4ecd4); }",
@@ -138,6 +140,17 @@
     ".fm-feature-row.reverse > * { direction: ltr; }",
     ".fm-feature-visual { border-radius: 16px; overflow: hidden; aspect-ratio: 21/9; position: relative; display: flex; align-items: center; justify-content: center; }",
     ".fm-feature-visual img { width: 100%; height: 100%; object-fit: cover; }",
+    /* 2.0 app screen: the /platform device frame, same values (cqw of the phone's own width) */
+    ".fm-phone { position: relative; container-type: inline-size; }",
+    ".fm-phone-frame { position: relative; padding: 3.2cqw; border-radius: 15.5cqw; background: linear-gradient(158deg, #4a4148 0%, #141115 34%, #0d0b0e 68%, #332b33 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 0 0 1px rgba(255,255,255,0.12), 0 2px 4px rgba(0,0,0,0.28), 0 18px 36px rgba(20,5,16,0.36); }",
+    ".fm-phone-frame::before { content: ''; position: absolute; left: -1.1cqw; top: 19cqw; width: 1.1cqw; height: 7cqw; border-radius: 0.8cqw 0 0 0.8cqw; background: #28232a; box-shadow: 0 11cqw 0 0 #28232a, 0 21.5cqw 0 0 #28232a; }",
+    ".fm-phone-frame::after { content: ''; position: absolute; right: -1.1cqw; top: 31cqw; width: 1.1cqw; height: 15cqw; border-radius: 0 0.8cqw 0.8cqw 0; background: #28232a; }",
+    ".fm-phone-screen { position: relative; border-radius: 12.3cqw; overflow: hidden; background: var(--status, #ced5d7); }",
+    ".fm-phone-screen::before { content: ''; display: block; padding-top: 11.2%; }",
+    /* A full-height capture brings its own status bar (the App Store frames keep theirs) */
+    ".fm-phone-screen.fm-full::before { display: none; }",
+    ".fm-phone-screen::after { content: ''; position: absolute; top: 2.4cqw; left: 50%; transform: translateX(-50%); width: 27.8cqw; height: 8.9cqw; border-radius: 4.5cqw; background: #000; }",
+    ".fm-phone .fm-phone-screen img { display: block; width: 100%; height: auto; object-fit: fill; }",
     ".fm-feature-text .fm-section-label { margin-bottom: 8px; }",
     ".fm-feature-text h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.005em; }",
     ".fm-feature-text p { font-size: 0.9rem; color: #555; line-height: 1.6; margin-bottom: 14px; }",
@@ -158,6 +171,10 @@
     ".fm-mi2-list li { display: flex; gap: 11px; align-items: flex-start; font-size: 0.9rem; color: rgba(255,255,255,0.85); line-height: 1.5; }",
     ".fm-mi2-list li svg { width: 17px; height: 17px; flex-shrink: 0; margin-top: 2.5px; color: #D93A3A; }",
     ".fm-mi2-list li strong { font-weight: 600; color: inherit; }",
+    /* App + web: the 2.0 phone stands level with the browser (the /platform mentor band pattern) */
+    ".fm-mi2-visual { position: relative; container-type: inline-size; }",
+    ".fm-mi2-visual .fm-browser { max-width: 80%; margin-right: auto; }",
+    ".fm-mi2-visual .fm-phone { position: absolute; right: 2cqw; bottom: 0; width: 24cqw; z-index: 2; }",
     ".fm-mi2-btn { display: inline-flex; align-items: center; gap: 9px; background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.4); padding: 12px 26px; border-radius: 100px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.3s; }",
     ".fm-mi2-btn:hover { border-color: #D93A3A; color: #fff; background: rgba(217,58,58,0.18); transform: translateY(-2px); }",
     ".fm-browser { border-radius: 12px; overflow: hidden; background: #16161a; box-shadow: 0 24px 70px rgba(20,5,16,0.35), 0 4px 18px rgba(20,5,16,0.18); border: 1px solid rgba(255,255,255,0.06); }",
@@ -324,10 +341,10 @@
   /* ══════════════════════════════════════════════════════════════
      2.  SVG icons (Get Started steps)
      ══════════════════════════════════════════════════════════════ */
-  var svgStep1 = '<svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="13" fill="#D93A3A"/><circle cx="14" cy="14" r="13" stroke="#fff" stroke-width="2.5"/><text x="14" y="19" text-anchor="middle" fill="#fff" font-family="\'Bricolage Grotesque\',sans-serif" font-size="16" font-weight="700">1</text><rect x="22" y="22" width="36" height="48" rx="7" stroke="#D93A3A" stroke-width="2.5"/><circle cx="40" cy="62" r="3" fill="#D93A3A"/><line x1="30" y1="34" x2="50" y2="34" stroke="#D93A3A" stroke-width="2" stroke-linecap="round"/><line x1="30" y1="42" x2="44" y2="42" stroke="#D93A3A" stroke-width="2" stroke-linecap="round" opacity="0.5"/><path d="M34 50l4 4 8-8" stroke="#D93A3A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  var svgStep2 = '<svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="13" fill="#6366f1"/><circle cx="14" cy="14" r="13" stroke="#fff" stroke-width="2.5"/><text x="14" y="19" text-anchor="middle" fill="#fff" font-family="\'Bricolage Grotesque\',sans-serif" font-size="16" font-weight="700">2</text><circle cx="44" cy="32" r="12" stroke="#6366f1" stroke-width="2.5"/><circle cx="44" cy="32" r="5" fill="#6366f1" opacity="0.3"/><path d="M26 68v-4a18 18 0 0 1 36 0v4" stroke="#6366f1" stroke-width="2.5" stroke-linecap="round"/><line x1="50" y1="56" x2="60" y2="56" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/><line x1="50" y1="62" x2="57" y2="62" stroke="#6366f1" stroke-width="2" stroke-linecap="round" opacity="0.5"/></svg>';
-  var svgStep3 = '<svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="13" fill="#22c55e"/><circle cx="14" cy="14" r="13" stroke="#fff" stroke-width="2.5"/><text x="14" y="19" text-anchor="middle" fill="#fff" font-family="\'Bricolage Grotesque\',sans-serif" font-size="16" font-weight="700">3</text><circle cx="44" cy="44" r="22" stroke="#22c55e" stroke-width="2.5"/><path d="M33 44l8 8 14-14" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="44" cy="44" r="28" stroke="#22c55e" stroke-width="1" opacity="0.25" stroke-dasharray="4 4"/></svg>';
-  var svgStep4 = '<svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="13" fill="#f59e0b"/><circle cx="14" cy="14" r="13" stroke="#fff" stroke-width="2.5"/><text x="14" y="19" text-anchor="middle" fill="#fff" font-family="\'Bricolage Grotesque\',sans-serif" font-size="16" font-weight="700">4</text><rect x="14" y="26" width="28" height="20" rx="4" stroke="#f59e0b" stroke-width="2.5"/><polygon points="56,28 68,36 56,44" stroke="#f59e0b" stroke-width="2.5" fill="#f59e0b" fill-opacity="0.2" stroke-linejoin="round"/><circle cx="28" cy="62" r="9" stroke="#f59e0b" stroke-width="2" opacity="0.5"/><circle cx="56" cy="62" r="9" stroke="#f59e0b" stroke-width="2" opacity="0.5"/><line x1="37" y1="62" x2="47" y2="62" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 3"/></svg>';
+  var svgStep1 = '<svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="22" y="22" width="36" height="48" rx="7" stroke="#D93A3A" stroke-width="2.5"/><circle cx="40" cy="62" r="3" fill="#D93A3A"/><line x1="30" y1="34" x2="50" y2="34" stroke="#D93A3A" stroke-width="2" stroke-linecap="round"/><line x1="30" y1="42" x2="44" y2="42" stroke="#D93A3A" stroke-width="2" stroke-linecap="round" opacity="0.5"/><path d="M34 50l4 4 8-8" stroke="#D93A3A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var svgStep2 = '<svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="44" cy="32" r="12" stroke="#6366f1" stroke-width="2.5"/><circle cx="44" cy="32" r="5" fill="#6366f1" opacity="0.3"/><path d="M26 68v-4a18 18 0 0 1 36 0v4" stroke="#6366f1" stroke-width="2.5" stroke-linecap="round"/><line x1="50" y1="56" x2="60" y2="56" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/><line x1="50" y1="62" x2="57" y2="62" stroke="#6366f1" stroke-width="2" stroke-linecap="round" opacity="0.5"/></svg>';
+  var svgStep3 = '<svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="44" cy="44" r="22" stroke="#22c55e" stroke-width="2.5"/><path d="M33 44l8 8 14-14" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="44" cy="44" r="28" stroke="#22c55e" stroke-width="1" opacity="0.25" stroke-dasharray="4 4"/></svg>';
+  var svgStep4 = '<svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="14" y="26" width="28" height="20" rx="4" stroke="#f59e0b" stroke-width="2.5"/><polygon points="56,28 68,36 56,44" stroke="#f59e0b" stroke-width="2.5" fill="#f59e0b" fill-opacity="0.2" stroke-linejoin="round"/><circle cx="28" cy="62" r="9" stroke="#f59e0b" stroke-width="2" opacity="0.5"/><circle cx="56" cy="62" r="9" stroke="#f59e0b" stroke-width="2" opacity="0.5"/><line x1="37" y1="62" x2="47" y2="62" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 3"/></svg>';
 
   /* Milestone SVG icons */
   var svgCheck = '<svg viewBox="0 0 24 24" fill="none" stroke="#D93A3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';
@@ -350,10 +367,10 @@
     starterPack: u('VersusWoman.png'),
     groupPhoto: u('1760104448089.jpeg'),
     communityUplift: u('community-uplift.jpg'),
-    dashboard: u('Dashboard mockup1.png'),
+    impact: u('track-impact-mentees.webp'),
     connections: u('Connections.jpeg'),
     videoCollage: u('Video collage.jpeg'),
-    iphoneMockup: u('iPhone Mockup hand.jpg'),
+    shareConnect: u('mentor-share-connect.jpg'), phoneVideo: u('phone-video.webp'),
     p3LogoStacked: u('p3-logo-stacked.png'),
     artKil: u('Arthur Kenard Killingsworth.jpg'),
     /* Gallery */
@@ -406,7 +423,7 @@
     '  <div class="fm-container">',
     '    <div class="fm-hero-content">',
     '      <h1>Your experience is someone\'s <em>roadmap to success</em></h1>',
-    '      <p>Join a community of industry professionals on your schedule \u2014 powered by AI smart matching, delivered through short videos.</p>',
+    '      <p>Join a community of industry professionals on your schedule, powered by AI smart matching and delivered through short videos.</p>',
     '      <div class="fm-hero-buttons">',
     '        <a href="/download" class="fm-btn fm-btn-white fm-btn-arrow">Become a Mentor</a>',
     '        <a href="https://platform.pulseofp3.org/demos/" target="_blank" rel="noopener" class="fm-btn fm-btn-white-outline">Try the Demo</a>',
@@ -431,20 +448,20 @@
     '  <div class="fm-container">',
     '    <div class="fm-section-label">Why Mentor with P3</div>',
     '    <h2 class="fm-section-heading">Make a measurable impact on <em>tomorrow\'s leaders</em></h2>',
-    '    <p class="fm-section-sub">Mentoring with P3 isn\'t just volunteering \u2014 it\'s building a bridge between your experience and a student\'s potential.</p>',
+    '    <p class="fm-section-sub">Mentoring with P3 isn\'t just volunteering. It\'s building a bridge between your experience and a student\'s potential.</p>',
     '    <div class="fm-why-grid">',
 
     '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.newMentor + '" alt="AI Smart Matching"><div class="fm-why-card-overlay"><h3>AI Smart Matching</h3></div></div><div class="fm-why-card-body"><div class="fm-why-card-role">Personalized Connections</div><p>Get matched with students who choose you based on your industry, career journey, and mentoring strengths. Every connection is intentional.</p></div></div>',
 
-    '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.hospital + '" alt="Fits Your Schedule"><div class="fm-why-card-overlay"><h3>Fits Your Schedule</h3></div></div><div class="fm-why-card-body"><div class="fm-why-card-role">Asynchronous Mentorship</div><p>Mentees send text-based questions, and you respond with short videos when it works for you. No calendar conflicts \u2014 just genuine guidance.</p></div></div>',
+    '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.hospital + '" alt="Fits Your Schedule"><div class="fm-why-card-overlay"><h3>Fits Your Schedule</h3></div></div><div class="fm-why-card-body"><div class="fm-why-card-role">Asynchronous Mentorship</div><p>Mentees send text-based questions, and you respond with short videos when it works for you. No calendar conflicts, just genuine guidance.</p></div></div>',
 
-    '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.starterPack + '" alt="Guided Support"><div class="fm-why-card-overlay"><h3>Guided Support</h3></div></div><div class="fm-why-card-body"><div class="fm-why-card-role">Supported from Day One</div><p>Every mentor receives a Mentorship Guide \u2014 peer reviewed by 20+ industry experts from UT Austin, LSU, Michigan, and Google.</p></div></div>',
+    '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.starterPack + '" alt="Guided Support"><div class="fm-why-card-overlay"><h3>Guided Support</h3></div></div><div class="fm-why-card-body"><div class="fm-why-card-role">Supported from Day One</div><p>Every mentor receives a Mentorship Guide, peer reviewed by 20+ industry experts from UT Austin, LSU, Michigan, and Google.</p></div></div>',
 
-    '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.groupPhoto + '" alt="National Visibility" class="top-align"><div class="fm-why-card-overlay"><h3>National Visibility</h3></div></div><div class="fm-why-card-body"><div class="fm-why-card-role">Mentor Portal</div><p>Once approved, your profile is featured on our National Mentor Portal \u2014 a public directory where students nationwide can discover you.</p></div></div>',
+    '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.groupPhoto + '" alt="National Visibility" class="top-align"><div class="fm-why-card-overlay"><h3>National Visibility</h3></div></div><div class="fm-why-card-body"><div class="fm-why-card-role">Mentor Portal</div><p>Once approved, your profile is featured on our National Mentor Portal, a public directory where students nationwide can discover you.</p></div></div>',
 
     '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.communityUplift + '" alt="Community Uplift" class="top-align"><div class="fm-why-card-overlay"><h3>Community Uplift</h3></div></div><div class="fm-why-card-body"><div class="fm-why-card-role">Collaborate Together</div><p>A turnkey way to activate employee volunteerism, strengthen your CSR footprint, and build a direct talent pipeline to underserved communities.</p></div></div>',
 
-    '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.dashboard + '" alt="Track Your Impact"><div class="fm-why-card-overlay"><h3>Track Your Impact</h3></div></div><div class="fm-why-card-body"><div class="fm-why-card-role">Measurable Outcomes</div><p>See how your mentorship makes a difference with milestone tracking, engagement metrics, and student progress \u2014 all visible from the app.</p></div></div>',
+    '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.impact + '" alt="Mentee milestone progress in the P3 web app" class="top-align"><div class="fm-why-card-overlay"><h3>Track Your Impact</h3></div></div><div class="fm-why-card-body"><div class="fm-why-card-role">Measurable Outcomes</div><p>See how your mentorship makes a difference with milestone tracking, engagement metrics, and student progress, all visible in the app and on the web.</p></div></div>',
 
     '    </div>',
     '  </div>',
@@ -459,10 +476,10 @@
     '      <p>P3 guides you through every step of mentor onboarding.</p>',
     '    </div>',
     '    <div class="fm-gs-steps">',
-    '      <div class="fm-gs-step"><div class="fm-gs-step-img"><div class="fm-gs-step-abstract bg-1">' + svgStep1 + '</div></div><div class="fm-gs-step-body"><h3>Download &amp; Register</h3><p>Get the P3 app on iOS or Android. Sign up with Google or email \u2014 it takes just 2 minutes.</p></div></div>',
-    '      <div class="fm-gs-step"><div class="fm-gs-step-img"><div class="fm-gs-step-abstract bg-2">' + svgStep2 + '</div></div><div class="fm-gs-step-body"><h3>Build Your Profile</h3><p>Add your bio, LinkedIn, education, industry experience, coaching strengths, and a 60-second intro video.</p></div></div>',
-    '      <div class="fm-gs-step"><div class="fm-gs-step-img"><div class="fm-gs-step-abstract bg-3">' + svgStep3 + '</div></div><div class="fm-gs-step-body"><h3>Get Approved</h3><p>P3 manually reviews every application within 5\u20137 business days. Once approved, you\'re matched and listed.</p></div></div>',
-    '      <div class="fm-gs-step"><div class="fm-gs-step-img"><div class="fm-gs-step-abstract bg-4">' + svgStep4 + '</div></div><div class="fm-gs-step-body"><h3>Start Mentoring</h3><p>Receive questions from matched mentees, respond with video guidance, and track their milestones.</p></div></div>',
+    '      <div class="fm-gs-step"><div class="fm-gs-step-img"><div class="fm-gs-step-abstract bg-1"><span class="fm-gs-num" style="--gs:#D93A3A">1</span>' + svgStep1 + '</div></div><div class="fm-gs-step-body"><h3>Download &amp; Register</h3><p>Get the P3 app on iOS or Android. Sign up with Google or email in just 2 minutes.</p></div></div>',
+    '      <div class="fm-gs-step"><div class="fm-gs-step-img"><div class="fm-gs-step-abstract bg-2"><span class="fm-gs-num" style="--gs:#6366f1">2</span>' + svgStep2 + '</div></div><div class="fm-gs-step-body"><h3>Build Your Profile</h3><p>Add your bio, LinkedIn, education, industry experience, coaching strengths, and a 60-second intro video.</p></div></div>',
+    '      <div class="fm-gs-step"><div class="fm-gs-step-img"><div class="fm-gs-step-abstract bg-3"><span class="fm-gs-num" style="--gs:#22c55e">3</span>' + svgStep3 + '</div></div><div class="fm-gs-step-body"><h3>Get Approved</h3><p>P3 manually reviews every application within 5\u20137 business days. Once approved, you\'re matched and listed.</p></div></div>',
+    '      <div class="fm-gs-step"><div class="fm-gs-step-img"><div class="fm-gs-step-abstract bg-4"><span class="fm-gs-num" style="--gs:#f59e0b">4</span>' + svgStep4 + '</div></div><div class="fm-gs-step-body"><h3>Start Mentoring</h3><p>Receive questions from matched mentees, respond with video guidance, and track their milestones.</p></div></div>',
     '    </div>',
     '  </div>',
     '</section>',
@@ -473,21 +490,21 @@
     '    <div style="text-align:center; margin-bottom: 40px;">',
     '      <div class="fm-section-label">Mentor Features</div>',
     '      <h2 class="fm-section-heading">Built for mentors. <em>Designed for impact.</em></h2>',
-    '      <p class="fm-section-sub" style="margin:0 auto">Everything you need to guide, connect, and support the next generation \u2014 right from your phone.</p>',
+    '      <p class="fm-section-sub" style="margin:0 auto">Everything you need to guide, connect, and support the next generation, right from your phone.</p>',
     '    </div>',
 
     '    <div class="fm-feature-row">',
     '      <div class="fm-feature-visual"><img src="' + img.connections + '" alt="Smart Matching"></div>',
-    '      <div class="fm-feature-text"><div class="fm-section-label">Smart Matching</div><h3>Personalized connections, powered by AI</h3><p>Students personalize their profiles with education goals, career ambitions, and availability. Our AI matches them with you based on industry expertise and mentoring style.</p><ul class="fm-feature-list"><li>Matched by industry, career goals &amp; personal needs</li><li>Students choose you \u2014 every connection is intentional</li><li>View mentee profiles before accepting a connection</li></ul></div>',
+    '      <div class="fm-feature-text"><div class="fm-section-label">Smart Matching</div><h3>Personalized connections, powered by AI</h3><p>Students personalize their profiles with education goals, career ambitions, and availability. Our AI matches them with you based on industry expertise and mentoring style.</p><ul class="fm-feature-list"><li>Matched by industry, career goals &amp; personal needs</li><li>Students choose you, so every connection is intentional</li><li>View mentee profiles before accepting a connection</li></ul></div>',
     '    </div>',
 
     '    <div class="fm-feature-row reverse">',
     '      <div class="fm-feature-visual"><img src="' + img.videoCollage + '" alt="Video Guidance"></div>',
-    '      <div class="fm-feature-text"><div class="fm-section-label">Video Guidance</div><h3>Answer questions with short videos</h3><p>Mentees submit text-based questions and you respond with authentic 90-second video answers. Your videos are automatically added to the Explore library for all students.</p><ul class="fm-feature-list"><li>Asynchronous \u2014 respond on your own schedule</li><li>Videos uploaded to the public Explore feed</li><li>+100 discussion topics with conversation starters</li></ul></div>',
+    '      <div class="fm-feature-text"><div class="fm-section-label">Video Guidance</div><h3>Answer questions with short videos</h3><p>Mentees submit text-based questions and you respond with authentic 90-second video answers. Your videos are automatically added to the Community library for all students.</p><ul class="fm-feature-list"><li>Asynchronous: respond on your own schedule</li><li>Videos uploaded to the public Community feed</li><li>100+ discussion topics with conversation starters</li></ul></div>',
     '    </div>',
 
     '    <div class="fm-feature-row">',
-    '      <div class="fm-feature-visual"><img src="' + img.iphoneMockup + '" alt="Share & Connect"></div>',
+    '      <div class="fm-feature-visual"><img src="' + img.shareConnect + '" alt="From P3\'s film shoot with VERSUS"></div>',
     '      <div class="fm-feature-text"><div class="fm-section-label">Share &amp; Connect</div><h3>Grow your reach beyond the app</h3><p>Share your mentor profile via text, email, WhatsApp, or social media. Your profile includes your bio, intro video, and a link from the National Mentor Portal.</p><ul class="fm-feature-list"><li>One-tap sharing via AirDrop, Messages, Gmail, and more</li><li>Shareable link from mentors.pulseofp3.org</li><li>Track your followers, mentees, and video engagement</li></ul></div>',
     '    </div>',
     '  </div>',
@@ -498,21 +515,22 @@
     '  <div class="fm-container">',
     '    <div class="fm-mi2-grid">',
     '      <div class="fm-mi2-copy">',
-    '        <div class="fm-section-label">Just Launched</div>',
-    '        <h2 class="fm-section-heading">New <em>Web Platform.</em></h2>',
-    '        <p class="fm-mi2-lede">Between meetings, on a real keyboard: see every question waiting for you, check in on each mentee\'s milestone progress, and post opportunities to the whole community.</p>',
+    '        <div class="fm-section-label">App + Web</div>',
+    '        <h2 class="fm-section-heading">Start on the app. <em>Continue on the web.</em></h2>',
+    '        <p class="fm-mi2-lede">Record answers on your phone, then catch up on a real keyboard. Same account, same questions and mentees, wherever you sign in.</p>',
     '        <ul class="fm-mi2-list">',
     '          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>A <strong>question queue</strong> with everything awaiting your answer</span></li>',
     '          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Post opportunities</strong> from your own network</span></li>',
     '          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Scan-to-answer</strong> hand-off to record video on your phone</span></li>',
     '        </ul>',
-    '        <a href="https://www.pulseofp3.org/platform" class="fm-mi2-btn">Explore the Web App <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>',
+    '        <a href="https://www.pulseofp3.org/platform" class="fm-mi2-btn">Explore the Platform <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>',
     '      </div>',
     '      <div class="fm-mi2-visual">',
     '        <div class="fm-browser">',
     '          <div class="fm-browser-bar"><div class="fm-browser-dots"><span></span><span></span><span></span></div><div class="fm-browser-url">platform.pulseofp3.org/mentor</div></div>',
     '          <img src="https://tparis7.github.io/Platform-Page/shots/mentor-home.webp?v=20260708a" alt="The mentor workspace: questions queue, mentees, and impact" loading="lazy">',
     '        </div>',
+    '        <div class="fm-phone"><div class="fm-phone-frame"><div class="fm-phone-screen fm-full"><img src="' + img.phoneVideo + '" alt="A video answer playing in the P3 app" loading="lazy"></div></div></div>',
     '      </div>',
     '    </div>',
     '  </div>',
