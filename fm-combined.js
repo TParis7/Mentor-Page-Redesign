@@ -80,18 +80,25 @@
     ".fm-why-mentor .fm-container > .fm-section-label { display: flex; width: fit-content; margin-left: auto; margin-right: auto; }",
     ".fm-why-mentor .fm-container > .fm-section-heading, .fm-why-mentor .fm-container > .fm-section-sub { text-align: center; }",
     ".fm-why-mentor .fm-container > .fm-section-sub { margin: 0 auto; }",
-    ".fm-why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; }",
-    ".fm-why-card { background: #fff; border-radius: 16px; overflow: hidden; border: 1px solid #eee; transition: all 0.3s ease; }",
-    ".fm-why-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); border-color: #D93A3A; }",
-    ".fm-why-card-img { height: 180px; overflow: hidden; position: relative; }",
-    ".fm-why-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }",
-    ".fm-why-card-img img.top-align { object-position: center top; }",
-    ".fm-why-card:hover .fm-why-card-img img { transform: scale(1.05); }",
-    ".fm-why-card-img .fm-why-card-overlay { position: absolute; bottom: 0; left: 0; right: 0; }",
-    "#fm-root .fm-why-card-img .fm-why-card-overlay h3 { color: #fff; font-size: 1.1rem; font-weight: 600; background: rgba(0,0,0,0.55); padding: 10px 16px; backdrop-filter: blur(2px); letter-spacing: -0.005em; }",
-    ".fm-why-card-body { padding: 20px; }",
-    ".fm-why-card-role { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #D93A3A; margin-bottom: 8px; }",
-    ".fm-why-card-body p { font-size: 0.88rem; color: #555; line-height: 1.6; margin-bottom: 12px; }",
+    /* The card is the homepage's "Built for every side of the mission" card and the
+       Platform page's "One account. Every device." card, rule for rule (Thomas, Sep 19
+       2026), and the same card the student page now carries. The dark band over the
+       image and the crimson uppercase eyebrow under it are both gone: one title per
+       card, which is what made the sections disagree. */
+    ".fm-why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 32px; }",
+    ".fm-why-card { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 2px 10px rgba(74,16,32,0.05); transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94); display: flex; flex-direction: column; }",
+    ".fm-why-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(74,16,32,0.12); }",
+    ".fm-why-card-img { position: relative; aspect-ratio: 16 / 9.2; overflow: hidden; background: #F0EBE5; }",
+    ".fm-why-card-img img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }",
+    ".fm-why-card-img img.ascent { object-position: 50% 30%; }",
+    "/* Guided Support is a 1:1 photo: center top framed the ceiling and dropped the subject to the floor of the card. */",
+    ".fm-why-card-img img.fm-crop-guided { object-position: 50% 37%; }",
+    "/* Track Your Impact is a 2:1 screenshot of four mentee cards. Whole, it renders at 41% and nothing in it is legible, which is the same as having no image. Scaled to the first card instead, which is the thing the title claims. Every number here is a PERCENTAGE, against a fixed 16/9.2 frame and a fixed 2:1 image, so the crop holds at every card width. Switched off below 480px, where the frame becomes a 122px thumbnail and the arithmetic no longer applies. */",
+    ".fm-why-card-img img.fm-crop-impact { object-position: 13.2% 0; transform-origin: 0 0; transform: translate(0, -3.24%) scale(1.781); }",
+    ".fm-why-card-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(74,16,32,0.10) 100%); pointer-events: none; }",
+    "#fm-root .fm-why-card-body h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 600; color: #1a1a1a; line-height: 1.25; margin-bottom: 8px; letter-spacing: -0.005em; }",
+    ".fm-why-card-body { padding: 20px 22px 24px; }",
+    ".fm-why-card-body p { font-size: 14px; color: #666; line-height: 1.55; margin-bottom: 0; }",
 
     /* ═══ GET STARTED ═══ */
     ".fm-get-started { background: #f8f6f3; position: relative; overflow: hidden; padding: 48px 0; }",
@@ -154,8 +161,12 @@
     ".fm-feature-text .fm-section-label { margin-bottom: 8px; }",
     ".fm-feature-text h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.005em; }",
     ".fm-feature-text p { font-size: 0.9rem; color: #555; line-height: 1.6; margin-bottom: 14px; }",
-    ".fm-feature-list { list-style: none; display: flex; flex-direction: column; gap: 6px; padding: 0; }",
-    ".fm-feature-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.86rem; color: #444; }",
+    /* Measured against the Platform page's "Conversations. Stay connected." list and
+       set to its values: 11px between items, 14px/1.5 text. The margin and padding
+       resets are the fix, not the gap: Webflow's own stylesheet was putting
+       margin-bottom 8px and padding-left 8px on every li. */
+    ".fm-feature-list { list-style: none; display: flex; flex-direction: column; gap: 11px; padding: 0; margin: 0; }",
+    ".fm-feature-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; line-height: 1.5; color: #444; margin: 0; padding: 0; }",
     ".fm-feature-list li::before { content: '\\2713'; color: #D93A3A; font-weight: 700; flex-shrink: 0; margin-top: 1px; }",
 
     /* ═══ WEB PLATFORM — homepage For-Institutions style band ═══ */
@@ -168,7 +179,7 @@
     ".fm-mi2-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 56px; align-items: center; }",
     ".fm-mi2-lede { font-size: 1rem; color: rgba(255,255,255,0.72); line-height: 1.65; margin: 0 0 20px; max-width: 470px; }",
     ".fm-mi2-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 11px; margin: 0 0 26px; }",
-    ".fm-mi2-list li { display: flex; gap: 11px; align-items: flex-start; font-size: 0.9rem; color: rgba(255,255,255,0.85); line-height: 1.5; }",
+    ".fm-mi2-list li { display: flex; gap: 11px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.85); margin: 0; padding: 0; }",
     ".fm-mi2-list li svg { width: 17px; height: 17px; flex-shrink: 0; margin-top: 2.5px; color: #D93A3A; }",
     ".fm-mi2-list li strong { font-weight: 600; color: inherit; }",
     /* App + web: the 2.0 phone stands level with the browser (the /platform mentor band pattern) */
@@ -260,10 +271,9 @@
     "  .fm-gs-step-body p { font-size: 0.8rem; }",
     "  .fm-gs-bubbles { display: none; }",
     "  .fm-why-grid { grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 32px; }",
-    "  .fm-why-card-img { height: 140px; }",
-    "  .fm-why-card-body { padding: 14px; }",
-    "  .fm-why-card-body p { font-size: 0.82rem; margin-bottom: 8px; }",
-    "  .fm-why-card-role { font-size: 0.72rem; margin-bottom: 6px; }",
+    "  .fm-why-card-body { padding: 14px 16px 16px; }",
+    "  #fm-root .fm-why-card-body h3 { font-size: 16px; margin-bottom: 4px; }",
+    "  .fm-why-card-body p { font-size: 13px; }",
     "  .fm-feature-row { gap: 24px; margin-bottom: 32px; }",
     "  .fm-feature-text h3 { font-size: 1.2rem; }",
     "  .fm-cta-badges img { height: 42px; }",
@@ -284,7 +294,11 @@
     "  .fm-hero-stat-num { font-size: 1.4rem; }",
     "  .fm-section-heading { font-size: 1.4rem; }",
     "  .fm-gs-steps { grid-template-columns: 1fr; max-width: 340px; margin: 0 auto; }",
-    "  .fm-why-grid { grid-template-columns: 1fr; }",
+    "  .fm-why-grid { grid-template-columns: 1fr; gap: 12px; max-width: 480px; margin-left: auto; margin-right: auto; }",
+    "  .fm-why-card { display: grid; grid-template-columns: 122px 1fr; }",
+    "  .fm-why-card-img { aspect-ratio: auto; height: 100%; min-height: 124px; }",
+    "  .fm-why-card-img img.fm-crop-impact { transform: none; object-position: 8% 12%; }",
+    "  .fm-why-card-body { padding: 14px 16px 13px; }",
     "  .fm-mi2-grid { grid-template-columns: 1fr; }",
     "}",
     "/* Chrome family (Sep 2026 parity pass). Family only: the nav, overlay and footer are body-level siblings that inherit Webflow's body line-height (30.006px), the value every nav measurement depends on, so line-height is never set here. Element selectors as well as the containers, because Webflow's compiled stylesheet sets Inter directly on .p3-nav-cta, .p3-footer-col-title, .p3-footer-tagline and .pp-mob-overlay-link, and a direct rule beats inheritance. */",
@@ -451,18 +465,17 @@
     '    <p class="fm-section-sub">Mentoring with P3 isn\'t just volunteering. It\'s building a bridge between your experience and a student\'s potential.</p>',
     '    <div class="fm-why-grid">',
 
-    '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.newMentor + '" alt="AI Smart Matching"><div class="fm-why-card-overlay"><h3>AI Smart Matching</h3></div></div><div class="fm-why-card-body"><div class="fm-why-card-role">Personalized Connections</div><p>Get matched with students who choose you based on your industry, career journey, and mentoring strengths. Every connection is intentional.</p></div></div>',
+    '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.newMentor + '" alt="A P3 mentor with a student"></div><div class="fm-why-card-body"><h3>AI Smart Matching</h3><p>Students choose you by your industry, career journey, and mentoring strengths.</p></div></div>',
 
-    '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.hospital + '" alt="Fits Your Schedule"><div class="fm-why-card-overlay"><h3>Fits Your Schedule</h3></div></div><div class="fm-why-card-body"><div class="fm-why-card-role">Asynchronous Mentorship</div><p>Mentees send text-based questions, and you respond with short videos when it works for you. No calendar conflicts, just genuine guidance.</p></div></div>',
+    '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.hospital + '" alt="A mentor recording a video answer"></div><div class="fm-why-card-body"><h3>Fits Your Schedule</h3><p>Mentees ask in text. You answer with a short video whenever it suits you.</p></div></div>',
 
-    '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.starterPack + '" alt="Guided Support"><div class="fm-why-card-overlay"><h3>Guided Support</h3></div></div><div class="fm-why-card-body"><div class="fm-why-card-role">Supported from Day One</div><p>Every mentor receives a Mentorship Guide, peer reviewed by 20+ industry experts from UT Austin, LSU, Michigan, and Google.</p></div></div>',
+    '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.starterPack + '" alt="The P3 mentor starter pack" class="fm-crop-guided"></div><div class="fm-why-card-body"><h3>Guided Support</h3><p>Every mentor gets the Mentorship Guide, peer reviewed by 20+ industry experts.</p></div></div>',
 
-    '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.groupPhoto + '" alt="National Visibility" class="top-align"><div class="fm-why-card-overlay"><h3>National Visibility</h3></div></div><div class="fm-why-card-body"><div class="fm-why-card-role">Mentor Portal</div><p>Once approved, your profile is featured on our National Mentor Portal, a public directory where students nationwide can discover you.</p></div></div>',
+    '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.groupPhoto + '" alt="P3 mentors together at an event"></div><div class="fm-why-card-body"><h3>National Visibility</h3><p>Once approved, your profile joins the National Mentor Portal for students to find.</p></div></div>',
 
-    '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.communityUplift + '" alt="Community Uplift" class="top-align"><div class="fm-why-card-overlay"><h3>Community Uplift</h3></div></div><div class="fm-why-card-body"><div class="fm-why-card-role">Collaborate Together</div><p>A turnkey way to activate employee volunteerism, strengthen your CSR footprint, and build a direct talent pipeline to underserved communities.</p></div></div>',
+    '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.communityUplift + '" alt="A community uplift event"></div><div class="fm-why-card-body"><h3>Community Uplift</h3><p>A turnkey way to activate employee volunteering and build a real talent pipeline.</p></div></div>',
 
-    '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.impact + '" alt="Mentee milestone progress in the P3 web app" class="top-align"><div class="fm-why-card-overlay"><h3>Track Your Impact</h3></div></div><div class="fm-why-card-body"><div class="fm-why-card-role">Measurable Outcomes</div><p>See how your mentorship makes a difference with milestone tracking, engagement metrics, and student progress, all visible in the app and on the web.</p></div></div>',
-
+    '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.impact + '" alt="A mentee\'s milestone progress in the P3 web app" class="fm-crop-impact"></div><div class="fm-why-card-body"><h3>Track Your Impact</h3><p>Milestones, engagement, and student progress, in the app and on the web.</p></div></div>',
     '    </div>',
     '  </div>',
     '</section>',
@@ -477,9 +490,9 @@
     '    </div>',
     '    <div class="fm-gs-steps">',
     '      <div class="fm-gs-step"><div class="fm-gs-step-img"><div class="fm-gs-step-abstract bg-1"><span class="fm-gs-num" style="--gs:#D93A3A">1</span>' + svgStep1 + '</div></div><div class="fm-gs-step-body"><h3>Download &amp; Register</h3><p>Get the P3 app on iOS or Android. Sign up with Google or email in just 2 minutes.</p></div></div>',
-    '      <div class="fm-gs-step"><div class="fm-gs-step-img"><div class="fm-gs-step-abstract bg-2"><span class="fm-gs-num" style="--gs:#6366f1">2</span>' + svgStep2 + '</div></div><div class="fm-gs-step-body"><h3>Build Your Profile</h3><p>Add your bio, LinkedIn, education, industry experience, coaching strengths, and a 60-second intro video.</p></div></div>',
-    '      <div class="fm-gs-step"><div class="fm-gs-step-img"><div class="fm-gs-step-abstract bg-3"><span class="fm-gs-num" style="--gs:#22c55e">3</span>' + svgStep3 + '</div></div><div class="fm-gs-step-body"><h3>Get Approved</h3><p>P3 manually reviews every application within 5\u20137 business days. Once approved, you\'re matched and listed.</p></div></div>',
-    '      <div class="fm-gs-step"><div class="fm-gs-step-img"><div class="fm-gs-step-abstract bg-4"><span class="fm-gs-num" style="--gs:#f59e0b">4</span>' + svgStep4 + '</div></div><div class="fm-gs-step-body"><h3>Start Mentoring</h3><p>Receive questions from matched mentees, respond with video guidance, and track their milestones.</p></div></div>',
+    '      <div class="fm-gs-step"><div class="fm-gs-step-img"><div class="fm-gs-step-abstract bg-2"><span class="fm-gs-num" style="--gs:#6366f1">2</span>' + svgStep2 + '</div></div><div class="fm-gs-step-body"><h3>Build Your Profile</h3><p>Add your bio, LinkedIn, industry experience, coaching strengths, and a 60-second intro video.</p></div></div>',
+    '      <div class="fm-gs-step"><div class="fm-gs-step-img"><div class="fm-gs-step-abstract bg-3"><span class="fm-gs-num" style="--gs:#22c55e">3</span>' + svgStep3 + '</div></div><div class="fm-gs-step-body"><h3>Get Approved</h3><p>Reviewed within 5\u20137 business days. Once approved, you\'re listed and matched.</p></div></div>',
+    '      <div class="fm-gs-step"><div class="fm-gs-step-img"><div class="fm-gs-step-abstract bg-4"><span class="fm-gs-num" style="--gs:#f59e0b">4</span>' + svgStep4 + '</div></div><div class="fm-gs-step-body"><h3>Start Mentoring</h3><p>Answer questions from your mentees with video guidance, and track their milestones.</p></div></div>',
     '    </div>',
     '  </div>',
     '</section>',
@@ -516,7 +529,7 @@
     '    <div class="fm-mi2-grid">',
     '      <div class="fm-mi2-copy">',
     '        <div class="fm-section-label">App + Web</div>',
-    '        <h2 class="fm-section-heading">Start on the app. <em>Continue on the web.</em></h2>',
+    '        <h2 class="fm-section-heading">Start on the app.<br><em>Continue on the web.</em></h2>',
     '        <p class="fm-mi2-lede">Record answers on your phone, then catch up on a real keyboard. Same account, same questions and mentees, wherever you sign in.</p>',
     '        <ul class="fm-mi2-list">',
     '          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>A <strong>question queue</strong> with everything awaiting your answer</span></li>',
