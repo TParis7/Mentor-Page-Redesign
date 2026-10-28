@@ -676,7 +676,7 @@
           p.textContent = 'Chicago, IL \u00B7 Founded 2018';
           if (!footer.querySelector('.p3-footer-contact')) {   /* Contact under the address (Oct 28 2026) */
             var ct = document.createElement('a'); ct.href = 'https://www.pulseofp3.org/about/contact'; ct.className = 'p3-footer-link p3-footer-contact';
-            ct.style.alignSelf = 'flex-start'; ct.textContent = 'Contact'; p.insertAdjacentElement('afterend', ct);
+            ct.style.alignSelf = 'flex-start'; ct.textContent = 'Contact Us'; p.insertAdjacentElement('afterend', ct);
           }
         }
       });
