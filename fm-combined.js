@@ -93,7 +93,8 @@
     ".fm-why-card-img img.ascent { object-position: 50% 30%; }",
     "/* Guided Support is a 1:1 photo: center top framed the ceiling and dropped the subject to the floor of the card. */",
     ".fm-why-card-img img.fm-crop-guided { object-position: 50% 37%; }",
-    "/* Track Your Impact was a 2:1 grid of four mentee cards that rendered at 41%, where no word in it was legible, and it took an object-position pan plus a scale to make one card readable. The asset is now cut to the card's own 16/9.2 from the mentor Home screen (Thomas, Sep 21 2026), so it needs no transform at all: Mentee Progress, one complete milestone track, and the next mentee starting. */",
+    "/* Track Your Impact was a 2:1 grid of four mentee cards that rendered at 41%, where no word in it was legible, and it took an object-position pan plus a scale to make one card readable. The asset is now cut to the card's own 16/9.2 from the mentor Home screen (Thomas, Sep 21 2026), so it needs no transform at all: Mentee Progress, one complete milestone track, and the next mentee starting. Nov 9 2026: re-cut from the new mentor Home (progress rings + Latest milestones), sample cast from the web demo, no real students; at 480px and below a picture source swaps in a 3 x 2 grid of rings that fits the narrow image column whole. */",
+    ".fm-why-card-img picture.fm-impact-pic { display: block; width: 100%; height: 100%; }",
     ".fm-why-card-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(74,16,32,0.10) 100%); pointer-events: none; }",
     "#fm-root .fm-why-card-body h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 600; color: #1a1a1a; line-height: 1.25; margin-bottom: 8px; letter-spacing: -0.005em; }",
     ".fm-why-card-body { padding: 20px 22px 24px; }",
@@ -382,7 +383,7 @@
     starterPack: u('VersusWoman.png'),
     groupPhoto: u('1760104448089.jpeg'),
     communityUplift: u('community-uplift.jpg'),
-    impact: u('mentor-progress.webp'),
+    impact: u('track-impact-progress.webp'), impactPhone: u('track-impact-rings.webp'),
     connections: u('Connections.jpeg'),
     videoCollage: u('Video collage.jpeg'),
     shareConnect: u('mentor-share-connect.jpg'), phoneVideo: u('phone-video.webp'),
@@ -476,7 +477,7 @@
 
     '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.communityUplift + '" alt="A community uplift event"></div><div class="fm-why-card-body"><h3>Community Uplift</h3><p>A turnkey way to activate employee volunteering and build a real talent pipeline.</p></div></div>',
 
-    '      <div class="fm-why-card"><div class="fm-why-card-img"><img src="' + img.impact + '" alt="Mentee Progress in the P3 mentor app: a completed milestone track"></div><div class="fm-why-card-body"><h3>Track Your Impact</h3><p>Milestones, engagement, and student progress, in the app and on the web.</p></div></div>',
+    '      <div class="fm-why-card"><div class="fm-why-card-img"><picture class="fm-impact-pic"><source media="(max-width: 480px)" srcset="' + img.impactPhone + '"><img src="' + img.impact + '" alt="Mentee Progress in the P3 mentor app: a progress ring for each mentee and their latest milestones"></picture></div><div class="fm-why-card-body"><h3>Track Your Impact</h3><p>A progress ring for every mentee and their latest milestones, in the app and on the web.</p></div></div>',
     '    </div>',
     '  </div>',
     '</section>',
